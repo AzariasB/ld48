@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/white_dot.png" type="Texture" id=1]
-[ext_resource path="res://assets/black_dot.png" type="Texture" id=2]
+[ext_resource path="res://scenes/progress.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/hot_gradient.png" type="Texture" id=2]
+[ext_resource path="res://resources/font.tres" type="DynamicFont" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -25,17 +26,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="TextureProgress" parent="HBoxContainer"]
-margin_right = 50.0
+[node name="Depth" parent="HBoxContainer" instance=ExtResource( 1 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
 margin_bottom = 576.0
-rect_min_size = Vector2( 50, 576 )
-value = 50.0
-texture_under = ExtResource( 2 )
-texture_progress = ExtResource( 1 )
-fill_mode = 2
-tint_under = Color( 0, 0, 0, 1 )
-tint_over = Color( 1, 1, 1, 0 )
-nine_patch_stretch = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 54.0
@@ -43,15 +38,65 @@ margin_right = 970.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 
-[node name="TextureProgress2" type="TextureProgress" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+margin_right = 916.0
+margin_bottom = 69.0
+alignment = 1
+
+[node name="moneyValue" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 916.0
+margin_bottom = 69.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "0 €"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+margin_top = 73.0
+margin_right = 916.0
+margin_bottom = 148.0
+
+[node name="dig" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 456.0
+margin_bottom = 75.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Dig"
+
+[node name="cooldown" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 460.0
+margin_right = 916.0
+margin_bottom = 75.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Cooldown"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+margin_top = 152.0
+margin_right = 916.0
+margin_bottom = 497.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+margin_top = 501.0
+margin_right = 916.0
+margin_bottom = 576.0
+
+[node name="goMarket" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 916.0
+margin_bottom = 75.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Market"
+
+[node name="Temperature" parent="HBoxContainer" instance=ExtResource( 1 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
 margin_left = 974.0
+margin_top = 0.0
 margin_right = 1024.0
 margin_bottom = 576.0
-rect_min_size = Vector2( 50, 576 )
-value = 50.0
-texture_under = ExtResource( 2 )
-texture_progress = ExtResource( 1 )
-fill_mode = 2
-tint_under = Color( 0, 0, 0, 1 )
-tint_over = Color( 1, 1, 1, 0 )
-nine_patch_stretch = true
+texture_progress = ExtResource( 2 )

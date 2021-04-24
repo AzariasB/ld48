@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/depth_gradient.png" type="Texture" id=1]
+[ext_resource path="res://assets/black_dot.png" type="Texture" id=2]
+[ext_resource path="res://resources/font.tres" type="DynamicFont" id=3]
+
+[node name="TextureProgress2" type="TextureProgress"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -288.0
+margin_right = 50.0
+margin_bottom = 288.0
+rect_min_size = Vector2( 50, 576 )
+value = 50.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 1 )
+fill_mode = 2
+tint_under = Color( 0, 0, 0, 1 )
+tint_over = Color( 1, 1, 1, 0 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 39.5897
+margin_top = 245.542
+margin_right = 118.59
+margin_bottom = -261.458
+rect_rotation = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "Test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
