@@ -3,8 +3,6 @@ extends Control
 onready var label = $VBoxContainer/Label
 onready var playButton = $VBoxContainer/play
 onready var helpButton = $VBoxContainer/help
-onready var quitBUtton = $VBoxContainer/quit
-
 
 func _ready():
 	playButton.grab_focus()

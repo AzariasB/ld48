@@ -15,9 +15,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Ld48"
-config/description="Demonstrates how to override GUI colors and styleboxes at runtime."
+config/description="Ld48"
 run/main_scene="res://scenes/menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+global="*res://scripts/global.gd"
 
 [display]
 

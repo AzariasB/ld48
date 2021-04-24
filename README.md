@@ -10,3 +10,5 @@
 - Improve gradient for temperature & earth's depth
 - Add sounds for all actions
 - Stylize buttons
+- Improve icon style
+- Change text with icons where possible

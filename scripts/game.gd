@@ -11,6 +11,7 @@ const MAX_DEPTH = 6_378_000_000
 
 onready var depth_node = $HBoxContainer/Depth
 onready var temperature_node = $HBoxContainer/Temperature
+onready var market_node = $Market
 
 func _ready():
 	depth_node.value = 0
@@ -30,7 +31,11 @@ func _process(delta):
 
 func _manual_dig():
 	depth_node.increase_progress(1)
+	global.emit_signal("money_change", 1)
 
 
 func _cooldown():
 	temperature_node.increase_progress(-1)
+
+func _on_marked_pressed():
+	self.market_node.popup_centered()
