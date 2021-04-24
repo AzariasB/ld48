@@ -12,3 +12,4 @@
 - Stylize buttons
 - Improve icon style
 - Change text with icons where possible
+- Replace temperature bar with a proper odometer

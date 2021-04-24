@@ -3,7 +3,6 @@ extends TextureProgress
 onready var label_node = $Label
 var unit = ""
 
-
 func set_progress(progress, unit: String):
 	var text = str(progress) + " " + unit
 	self.unit = unit

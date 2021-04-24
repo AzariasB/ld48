@@ -1,23 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://resources/20lato.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/market.gd" type="Script" id=2]
-[ext_resource path="res://scripts/purchase.gd" type="Script" id=3]
 [ext_resource path="res://scenes/purchase.tscn" type="PackedScene" id=4]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 0.278431 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-expand_margin_left = 5.0
-expand_margin_right = 5.0
-expand_margin_top = 5.0
-expand_margin_bottom = 5.0
-
 [node name="Market" type="PopupDialog"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -54,114 +41,33 @@ margin_left = 4.0
 margin_top = 43.0
 margin_right = -4.0
 margin_bottom = -4.0
+custom_constants/separation = 5
 
-[node name="Purchase3" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-
-[node name="Title" parent="TabContainer/Drills/Purchase3/HBoxContainer" index="0"]
-margin_right = 665.0
+[node name="BasicDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
+margin_bottom = 41.0
+price = 10
 text = "Basic drill"
+purchase_type = 0
 
-[node name="Price" parent="TabContainer/Drills/Purchase3/HBoxContainer" index="1"]
-margin_left = 669.0
-text = "10 €"
+[node name="NormalDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
+margin_top = 46.0
+margin_bottom = 87.0
+price = 20
+text = "NormalDrill"
 
-[node name="Purchase2" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-margin_top = 39.0
-margin_bottom = 74.0
+[node name="AdvancedDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
+margin_top = 92.0
+margin_bottom = 133.0
+price = 40
+text = "Advanded drill"
+purchase_type = 2
 
-[node name="Title" parent="TabContainer/Drills/Purchase2/HBoxContainer" index="0"]
-margin_right = 665.0
-text = "Normal drill"
-
-[node name="Price" parent="TabContainer/Drills/Purchase2/HBoxContainer" index="1"]
-margin_left = 669.0
-text = "20 €"
-
-[node name="AdvancedDrill" type="PanelContainer" parent="TabContainer/Drills"]
-margin_top = 78.0
-margin_right = 815.0
-margin_bottom = 113.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Drills/AdvancedDrill"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 813.0
-margin_bottom = 33.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="TabContainer/Drills/AdvancedDrill/HBoxContainer"]
-margin_top = 3.0
-margin_right = 665.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
-text = "Advanced drill"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Price" type="Label" parent="TabContainer/Drills/AdvancedDrill/HBoxContainer"]
-margin_left = 669.0
-margin_top = 3.0
-margin_right = 709.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 1 )
-text = "40 €"
-
-[node name="Button" type="Button" parent="TabContainer/Drills/AdvancedDrill/HBoxContainer"]
-margin_left = 713.0
-margin_right = 811.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 1 )
-disabled = true
-text = "Purchase"
-align = 0
-
-[node name="LaserDrill" type="PanelContainer" parent="TabContainer/Drills"]
-margin_top = 117.0
-margin_right = 815.0
-margin_bottom = 152.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Drills/LaserDrill"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 813.0
-margin_bottom = 33.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="TabContainer/Drills/LaserDrill/HBoxContainer"]
-margin_top = 3.0
-margin_right = 653.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+[node name="LaserDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
+margin_top = 138.0
+margin_bottom = 179.0
+price = 80
 text = "Laser drill"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Price" type="Label" parent="TabContainer/Drills/LaserDrill/HBoxContainer"]
-margin_left = 657.0
-margin_top = 3.0
-margin_right = 709.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 1 )
-text = "100 €"
-
-[node name="Button" type="Button" parent="TabContainer/Drills/LaserDrill/HBoxContainer"]
-margin_left = 713.0
-margin_right = 811.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 1 )
-disabled = true
-text = "Purchase"
-align = 0
+purchase_type = 3
 
 [node name="Coolings" type="VBoxContainer" parent="TabContainer"]
 visible = false
@@ -171,178 +77,34 @@ margin_left = 4.0
 margin_top = 43.0
 margin_right = -4.0
 margin_bottom = -4.0
+custom_constants/separation = 5
 
-[node name="BucketOWater" type="PanelContainer" parent="TabContainer/Coolings"]
-margin_right = 815.0
-margin_bottom = 35.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Coolings/BucketOWater"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 813.0
-margin_bottom = 33.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="TabContainer/Coolings/BucketOWater/HBoxContainer"]
-margin_top = 3.0
-margin_right = 665.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+[node name="BuckeOWater" parent="TabContainer/Coolings" instance=ExtResource( 4 )]
+margin_bottom = 41.0
+price = 10
 text = "Bucket'o'water"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+purchase_type = 4
 
-[node name="Price" type="Label" parent="TabContainer/Coolings/BucketOWater/HBoxContainer"]
-margin_left = 669.0
-margin_top = 3.0
-margin_right = 709.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 1 )
-text = "10 €"
-
-[node name="Button" type="Button" parent="TabContainer/Coolings/BucketOWater/HBoxContainer"]
-margin_left = 713.0
-margin_right = 811.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 1 )
-disabled = true
-text = "Purchase"
-align = 0
-script = ExtResource( 3 )
-
-[node name="ColdWater" type="PanelContainer" parent="TabContainer/Coolings"]
-margin_top = 39.0
-margin_right = 815.0
-margin_bottom = 74.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Coolings/ColdWater"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 813.0
-margin_bottom = 33.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="TabContainer/Coolings/ColdWater/HBoxContainer"]
-margin_top = 3.0
-margin_right = 665.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+[node name="ColdWater2" parent="TabContainer/Coolings" instance=ExtResource( 4 )]
+margin_top = 46.0
+margin_bottom = 87.0
+price = 20
 text = "Cold water"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+purchase_type = 5
 
-[node name="Price" type="Label" parent="TabContainer/Coolings/ColdWater/HBoxContainer"]
-margin_left = 669.0
-margin_top = 3.0
-margin_right = 709.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 1 )
-text = "20 €"
+[node name="CentralAirConditioner" parent="TabContainer/Coolings" instance=ExtResource( 4 )]
+margin_top = 92.0
+margin_bottom = 133.0
+price = 40
+text = "Central air conditioner"
+purchase_type = 6
 
-[node name="Button" type="Button" parent="TabContainer/Coolings/ColdWater/HBoxContainer"]
-margin_left = 713.0
-margin_right = 811.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 1 )
-disabled = true
-text = "Purchase"
-align = 0
-
-[node name="CentralAirConditioner" type="PanelContainer" parent="TabContainer/Coolings"]
-margin_top = 78.0
-margin_right = 815.0
-margin_bottom = 113.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Coolings/CentralAirConditioner"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 813.0
-margin_bottom = 33.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="TabContainer/Coolings/CentralAirConditioner/HBoxContainer"]
-margin_top = 3.0
-margin_right = 665.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
-text = "Central Air Conditioner"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Price" type="Label" parent="TabContainer/Coolings/CentralAirConditioner/HBoxContainer"]
-margin_left = 669.0
-margin_top = 3.0
-margin_right = 709.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 1 )
-text = "40 €"
-
-[node name="Button" type="Button" parent="TabContainer/Coolings/CentralAirConditioner/HBoxContainer"]
-margin_left = 713.0
-margin_right = 811.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 1 )
-disabled = true
-text = "Purchase"
-align = 0
-
-[node name="CoolingLiquid" type="PanelContainer" parent="TabContainer/Coolings"]
-margin_top = 117.0
-margin_right = 815.0
-margin_bottom = 152.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Coolings/CoolingLiquid"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 813.0
-margin_bottom = 33.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="TabContainer/Coolings/CoolingLiquid/HBoxContainer"]
-margin_top = 3.0
-margin_right = 653.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+[node name="CoolingLiquid" parent="TabContainer/Coolings" instance=ExtResource( 4 )]
+margin_top = 138.0
+margin_bottom = 179.0
+price = 80
 text = "Cooling liquid"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Price" type="Label" parent="TabContainer/Coolings/CoolingLiquid/HBoxContainer"]
-margin_left = 657.0
-margin_top = 3.0
-margin_right = 709.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 1 )
-text = "100 €"
-
-[node name="Button" type="Button" parent="TabContainer/Coolings/CoolingLiquid/HBoxContainer"]
-margin_left = 713.0
-margin_right = 811.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 1 )
-disabled = true
-text = "Purchase"
-align = 0
+purchase_type = 7
 
 [node name="Others" type="VBoxContainer" parent="TabContainer"]
 visible = false
@@ -353,47 +115,12 @@ margin_top = 43.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="MetalDetector" type="PanelContainer" parent="TabContainer/Others"]
-margin_right = 815.0
-margin_bottom = 35.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Others/MetalDetector"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 813.0
-margin_bottom = 33.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="TabContainer/Others/MetalDetector/HBoxContainer"]
-margin_top = 3.0
-margin_right = 653.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
+[node name="MetalDetector" parent="TabContainer/Others" instance=ExtResource( 4 )]
+margin_top = 138.0
+margin_bottom = 179.0
+price = 100
 text = "Metal detector"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Price" type="Label" parent="TabContainer/Others/MetalDetector/HBoxContainer"]
-margin_left = 657.0
-margin_top = 3.0
-margin_right = 709.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 1 )
-text = "200 €"
-
-[node name="Button" type="Button" parent="TabContainer/Others/MetalDetector/HBoxContainer"]
-margin_left = 713.0
-margin_right = 811.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 1 )
-disabled = true
-text = "Purchase"
-align = 0
+purchase_type = 8
 
 [node name="Close" type="Button" parent="."]
 margin_left = 801.539
@@ -407,6 +134,3 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]
-
-[editable path="TabContainer/Drills/Purchase3"]
-[editable path="TabContainer/Drills/Purchase2"]

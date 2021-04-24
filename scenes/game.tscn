@@ -91,7 +91,7 @@ margin_right = 916.0
 margin_bottom = 497.0
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer4"]
+[node name="logs" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer4"]
 margin_right = 916.0
 margin_bottom = 345.0
 size_flags_horizontal = 3
@@ -99,7 +99,7 @@ size_flags_vertical = 3
 custom_fonts/mono_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 2 )
 text = "
-Here's what hapened"
+"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 margin_top = 501.0
@@ -123,7 +123,6 @@ margin_bottom = 576.0
 texture_progress = ExtResource( 2 )
 
 [node name="Market" parent="." instance=ExtResource( 6 )]
-visible = false
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/dig" to="." method="_manual_dig"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/cooldown" to="." method="_cooldown"]
