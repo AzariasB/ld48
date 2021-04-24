@@ -8,6 +8,7 @@ var drill_bonus = 0
 var drilled_depth = 0.0
 var heating_steps = 10
 var cooling_mult = 1
+var dig_mult = 1
 
 var money = 0
 var min_money = -5
@@ -26,7 +27,7 @@ func _ready():
 	depth_node.max_value = MAX_DEPTH
 	temperature_node.value = 0
 	depth_node.set_progress(0.0, "mm")
-	temperature_node.set_progress(0.0, "°C")
+	temperature_node.set_progress(0.0)
 	global.connect("purchase_made", self, "_process_purchase")
 	global.connect("money_used", self, "_loose_money")
 
@@ -59,7 +60,7 @@ func _loose_money(lost):
 	self._gain_money(-lost)
 
 func _manual_dig():
-	self._increase_depth(1)
+	self._increase_depth(dig_mult)
 	#Debug only
 	self._gain_money(100)
 
@@ -88,8 +89,27 @@ func _process_purchase(purchase_type):
 			cooling_mult = 5
 		global.PurchaseType.COOLING_LIQUID:
 			heating_steps = 1
+		global.PurchaseType.GLOVES:
+			dig_mult = 2
+		global.PurchaseType.SHOVEL:
+			dig_mult = 5
+		global.PurchaseType.PICKAXE:
+			dig_mult = 10
+		global.PurchaseType.EXCAVATOR:
+			dig_mult = 50
+		global.PurchaseType.SIEVE:
+			min_money = -2
+			max_money = 2
 		global.PurchaseType.METAL_DETECTOR:
 			min_money = -1
 			max_money = 3
+		global.PurchaseType.MAGNET:
+			min_money = -1
+			max_money = 5
+		global.PurchaseType.SCANNER:
+			min_money = 0
+			max_money = 10
 		global.PurchaseType.ENGINE_REPAIR:
 			self.temperature_node.set_progress(0.0)
+		global.PurchaseType.IMPROVED_DRILL_ENGINE:
+			self.temperature_node.max_value = 5000

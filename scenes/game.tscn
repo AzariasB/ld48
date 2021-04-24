@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/progress.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/hot_gradient.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/th_background.png" type="Texture" id=2]
 [ext_resource path="res://assets/hand.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://resources/font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scripts/game.gd" type="Script" id=5]
 [ext_resource path="res://scenes/market.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Lato/Lato-Black.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://resources/theme.tres" type="Theme" id=8]
+[ext_resource path="res://assets/textures/the_foreground.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/th_value.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -19,11 +22,16 @@ font_data = ExtResource( 3 )
 size = 20
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 7 )
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 8 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -50,18 +58,18 @@ margin_bottom = 576.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 54.0
-margin_right = 970.0
+margin_right = 870.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_right = 916.0
-margin_bottom = 49.0
+margin_right = 816.0
+margin_bottom = 57.0
 alignment = 1
 
 [node name="moneyValue" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 916.0
-margin_bottom = 49.0
+margin_right = 816.0
+margin_bottom = 57.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "0 €"
@@ -71,34 +79,34 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 53.0
-margin_right = 916.0
-margin_bottom = 128.0
+margin_top = 61.0
+margin_right = 816.0
+margin_bottom = 138.0
 
 [node name="dig" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 456.0
-margin_bottom = 75.0
+margin_right = 406.0
+margin_bottom = 77.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Dig"
 
 [node name="cooldown" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 460.0
-margin_right = 916.0
-margin_bottom = 75.0
+margin_left = 410.0
+margin_right = 816.0
+margin_bottom = 77.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Cooldown"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 132.0
-margin_right = 916.0
-margin_bottom = 497.0
+margin_top = 142.0
+margin_right = 816.0
+margin_bottom = 495.0
 size_flags_vertical = 3
 
 [node name="logs" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer4"]
-margin_right = 916.0
-margin_bottom = 365.0
+margin_right = 816.0
+margin_bottom = 353.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/mono_font = SubResource( 2 )
@@ -107,13 +115,13 @@ text = "
 "
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 501.0
-margin_right = 916.0
+margin_top = 499.0
+margin_right = 816.0
 margin_bottom = 576.0
 
 [node name="goMarket" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 916.0
-margin_bottom = 75.0
+margin_right = 816.0
+margin_bottom = 77.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Market"
@@ -121,14 +129,30 @@ text = "Market"
 [node name="Temperature" parent="HBoxContainer" instance=ExtResource( 1 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
-margin_left = 974.0
+margin_left = 874.0
 margin_top = 0.0
 margin_right = 1024.0
 margin_bottom = 576.0
-texture_progress = ExtResource( 2 )
+rect_min_size = Vector2( 150, 576 )
+texture_under = ExtResource( 2 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
+fill_mode = 3
+tint_under = Color( 0.666667, 0.666667, 0.666667, 1 )
+tint_over = Color( 0, 0, 0, 1 )
+
+[node name="Label" parent="HBoxContainer/Temperature" index="0"]
+margin_left = -51.4801
+margin_top = 479.22
+margin_right = 53.5199
+margin_bottom = -59.7797
+rect_rotation = 0.0
+custom_fonts/font = SubResource( 4 )
 
 [node name="Market" parent="." instance=ExtResource( 6 )]
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/dig" to="." method="_manual_dig"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/cooldown" to="." method="_cooldown"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer3/goMarket" to="." method="_on_marked_pressed"]
+
+[editable path="HBoxContainer/Temperature"]

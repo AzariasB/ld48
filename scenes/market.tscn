@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resources/20lato.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/market.gd" type="Script" id=2]
+[ext_resource path="res://resources/theme.tres" type="Theme" id=3]
 [ext_resource path="res://scenes/purchase.tscn" type="PackedScene" id=4]
 
 [node name="Market" type="PopupDialog"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -13,6 +15,7 @@ margin_left = -411.5
 margin_top = -134.5
 margin_right = 411.5
 margin_bottom = 134.5
+theme = ExtResource( 3 )
 popup_exclusive = true
 script = ExtResource( 2 )
 __meta__ = {
@@ -37,36 +40,40 @@ __meta__ = {
 [node name="Drills" type="VBoxContainer" parent="TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 43.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 40.0
+margin_right = -5.0
+margin_bottom = -5.0
 custom_constants/separation = 5
 
 [node name="BasicDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-margin_bottom = 41.0
+margin_right = 813.0
+margin_bottom = 43.0
 price = 10
 text = "Basic drill"
 purchase_type = 1
 
 [node name="NormalDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-margin_top = 46.0
-margin_bottom = 87.0
+margin_top = 48.0
+margin_right = 813.0
+margin_bottom = 91.0
 price = 20
 text = "NormalDrill"
 required_purchase = 1
 
 [node name="AdvancedDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-margin_top = 92.0
-margin_bottom = 133.0
+margin_top = 96.0
+margin_right = 813.0
+margin_bottom = 139.0
 price = 40
 text = "Advanded drill"
 purchase_type = 3
 required_purchase = 2
 
 [node name="LaserDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
+margin_top = 144.0
+margin_right = 813.0
+margin_bottom = 187.0
 price = 80
 text = "Laser drill"
 purchase_type = 4
