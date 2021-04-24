@@ -1,14 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/progress.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/hot_gradient.png" type="Texture" id=2]
-[ext_resource path="res://resources/font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/hand.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://resources/font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scripts/game.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 3 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -47,7 +57,7 @@ alignment = 1
 margin_right = 916.0
 margin_bottom = 69.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 text = "0 €"
 align = 1
 __meta__ = {
@@ -63,7 +73,7 @@ margin_bottom = 148.0
 margin_right = 456.0
 margin_bottom = 75.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 text = "Dig"
 
 [node name="cooldown" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
@@ -71,7 +81,7 @@ margin_left = 460.0
 margin_right = 916.0
 margin_bottom = 75.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 text = "Cooldown"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
@@ -79,6 +89,16 @@ margin_top = 152.0
 margin_right = 916.0
 margin_bottom = 497.0
 size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_right = 916.0
+margin_bottom = 345.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+text = "
+Here's what hapened"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 margin_top = 501.0
@@ -89,7 +109,7 @@ margin_bottom = 576.0
 margin_right = 916.0
 margin_bottom = 75.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 text = "Market"
 
 [node name="Temperature" parent="HBoxContainer" instance=ExtResource( 1 )]
@@ -100,3 +120,6 @@ margin_top = 0.0
 margin_right = 1024.0
 margin_bottom = 576.0
 texture_progress = ExtResource( 2 )
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/dig" to="." method="_manual_dig"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/cooldown" to="." method="_cooldown"]

@@ -98,21 +98,21 @@ text = "To the core"
 align = 1
 valign = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="play" type="Button" parent="VBoxContainer"]
 margin_top = 68.0
 margin_right = 151.0
 margin_bottom = 155.0
 custom_fonts/font = SubResource( 7 )
 text = "Play"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="help" type="Button" parent="VBoxContainer"]
 margin_top = 175.0
 margin_right = 151.0
 margin_bottom = 242.0
 custom_fonts/font = SubResource( 8 )
 text = "Help"
 
-[node name="ResetAllButton" type="Button" parent="VBoxContainer"]
+[node name="quit" type="Button" parent="VBoxContainer"]
 margin_top = 262.0
 margin_right = 151.0
 margin_bottom = 322.0
@@ -122,6 +122,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button2_pressed"]
-[connection signal="pressed" from="VBoxContainer/ResetAllButton" to="." method="_on_reset_all_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
