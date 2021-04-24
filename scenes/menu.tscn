@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/hand.ttf" type="DynamicFontData" id=2]
@@ -42,6 +42,35 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=4]
 size = 40
 font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Scale"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 2, 0.5, 2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.25, 1.25 ), Vector2( 1, 1 ), Vector2( 1.25, 1.25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.501, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, 0.0, -5.0 ]
+}
 
 [sub_resource type="DynamicFont" id=5]
 size = 25
@@ -116,8 +145,16 @@ valign = 1
 margin_top = 68.0
 margin_right = 151.0
 margin_bottom = 131.0
+rect_pivot_offset = Vector2( 75, 31 )
 custom_fonts/font = SubResource( 4 )
 text = "Play"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/play"]
+autoplay = "Scale"
+playback_process_mode = 0
+playback_speed = 0.5
+method_call_mode = 1
+anims/Scale = SubResource( 7 )
 
 [node name="help" type="Button" parent="VBoxContainer"]
 margin_top = 151.0
