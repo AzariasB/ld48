@@ -1,22 +1,53 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/hand.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://resources/theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/textures/menu_backgroud.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/cloud2.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/cloud1.png" type="Texture" id=6]
+[ext_resource path="res://resources/kindasin.tres" type="Texture" id=7]
+[ext_resource path="res://assets/textures/house.png" type="Texture" id=8]
 
-[sub_resource type="DynamicFont" id=1]
-size = 25
-font_data = ExtResource( 2 )
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 0, 50, 0 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 1.2
+scale_random = 1.0
+scale_curve = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 40
-font_data = ExtResource( 2 )
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 0, 50, 0 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = -100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 1.2
+scale_random = 1.0
+scale_curve = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 25
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 2 )
 
@@ -28,6 +59,35 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="layers" type="Sprite" parent="."]
+position = Vector2( 494.68, 284.218 )
+scale = Vector2( 1.22473, 1.17163 )
+texture = ExtResource( 4 )
+
+[node name="Node2D" type="Node2D" parent="layers"]
+position = Vector2( 11.1476, -206.852 )
+scale = Vector2( 0.30895, 0.338967 )
+
+[node name="LeftClouds" type="Particles2D" parent="layers/Node2D"]
+position = Vector2( -1473.71, 59.3379 )
+amount = 2
+lifetime = 40.0
+process_material = SubResource( 1 )
+texture = ExtResource( 6 )
+
+[node name="RightClouds" type="Particles2D" parent="layers/Node2D"]
+position = Vector2( 1512.19, 271.141 )
+z_as_relative = false
+amount = 2
+lifetime = 40.0
+process_material = SubResource( 2 )
+texture = ExtResource( 5 )
+
+[node name="house" type="Sprite" parent="layers"]
+position = Vector2( 323.951, -75.2155 )
+scale = Vector2( 0.389181, 0.389181 )
+texture = ExtResource( 8 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -47,7 +107,7 @@ __meta__ = {
 margin_right = 151.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 0, 48 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "To the core"
 align = 1
 valign = 1
@@ -56,21 +116,21 @@ valign = 1
 margin_top = 68.0
 margin_right = 151.0
 margin_bottom = 131.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Play"
 
 [node name="help" type="Button" parent="VBoxContainer"]
 margin_top = 151.0
 margin_right = 151.0
 margin_bottom = 194.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Help"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 margin_top = 214.0
 margin_right = 151.0
 margin_bottom = 250.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
