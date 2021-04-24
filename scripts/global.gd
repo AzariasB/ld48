@@ -32,3 +32,5 @@ signal depth_change(depth)
 
 signal money_used(money)
 signal purchase_made(purchase_type)
+
+signal end_reached()

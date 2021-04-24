@@ -4,19 +4,19 @@
 [ext_resource path="res://assets/hand.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://resources/theme.tres" type="Theme" id=3]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=1]
 size = 25
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=2]
 size = 40
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=3]
 size = 25
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=4]
 size = 20
 font_data = ExtResource( 2 )
 
@@ -47,7 +47,7 @@ __meta__ = {
 margin_right = 151.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 0, 48 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 1 )
 text = "To the core"
 align = 1
 valign = 1
@@ -56,21 +56,21 @@ valign = 1
 margin_top = 68.0
 margin_right = 151.0
 margin_bottom = 131.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
 text = "Play"
 
 [node name="help" type="Button" parent="VBoxContainer"]
 margin_top = 151.0
 margin_right = 151.0
 margin_bottom = 194.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 3 )
 text = "Help"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 margin_top = 214.0
 margin_right = 151.0
 margin_bottom = 250.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 4 )
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false

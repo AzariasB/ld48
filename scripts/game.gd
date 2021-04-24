@@ -2,7 +2,6 @@ extends Control
 
 
 var drill_temperature = 0
-var depth = 0
 var drill_mult = 1
 var drill_bonus = 0
 var drilled_depth = 0.0
@@ -14,25 +13,46 @@ var money = 0
 var min_money = -5
 var max_money = 1
 
-const MAX_DEPTH = 6_378_000_000
+#Earth's radius in mm : 6378000000
 
-onready var depth_node = $HBoxContainer/Depth
 onready var temperature_node = $HBoxContainer/Temperature
 onready var market_node = $Market
 onready var money_node = $HBoxContainer/VBoxContainer/HBoxContainer/moneyValue
 onready var logs_dialog = $HBoxContainer/VBoxContainer/HBoxContainer4/logs
+onready var depth_node = $HBoxContainer/Depth
+onready var end_node = $EndNode/Confeti
+onready var buttons = [
+	$HBoxContainer/VBoxContainer/HBoxContainer2/dig,
+	$HBoxContainer/VBoxContainer/HBoxContainer2/cooldown,
+	$HBoxContainer/VBoxContainer/HBoxContainer3/goMarket
+]
+onready var won_dialog = $WonDialog
 
 func _ready():
 	depth_node.value = 0
-	depth_node.max_value = MAX_DEPTH
 	temperature_node.value = 0
-	depth_node.set_progress(0.0, "mm")
 	temperature_node.set_progress(0.0)
 	global.connect("purchase_made", self, "_process_purchase")
 	global.connect("money_used", self, "_loose_money")
 
+	global.connect("end_reached", self, "_finish_game", [], CONNECT_ONESHOT)
+
+func _finish_game():
+	end_node.emitting = true
+	end_node.amount = 100
+	for b in self.buttons:
+		b.disabled = true
+	set_process(false)
+	won_dialog.popup_centered_clamped()
+
+func _menu_clicked():
+	get_tree().change_scene("res://scenes/menu.tscn")
+
+func _replay_clicked():
+	get_tree().change_scene("res://scenes/game.tscn")
+
 func _increase_depth(depth):
-	depth_node.increase_progress(depth)
+	depth_node.value += depth
 	global.emit_signal("depth_change", depth_node.value)
 	var money_made = round(rand_range(min_money, max_money))
 	if money_made > 0:
@@ -60,7 +80,7 @@ func _loose_money(lost):
 	self._gain_money(-lost)
 
 func _manual_dig():
-	self._increase_depth(dig_mult)
+	self._increase_depth(dig_mult * 10000000000)
 	#Debug only
 	self._gain_money(100)
 
