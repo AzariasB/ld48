@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/progress.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/hot_gradient.png" type="Texture" id=2]
@@ -6,11 +6,16 @@
 [ext_resource path="res://resources/font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scripts/game.gd" type="Script" id=5]
 [ext_resource path="res://scenes/market.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/Lato/Lato-Black.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 3 )
+size = 40
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 20
 font_data = ExtResource( 3 )
 
@@ -51,14 +56,14 @@ size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 margin_right = 916.0
-margin_bottom = 69.0
+margin_bottom = 49.0
 alignment = 1
 
 [node name="moneyValue" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 916.0
-margin_bottom = 69.0
+margin_bottom = 49.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = SubResource( 1 )
 text = "0 €"
 align = 1
 __meta__ = {
@@ -66,9 +71,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 73.0
+margin_top = 53.0
 margin_right = 916.0
-margin_bottom = 148.0
+margin_bottom = 128.0
 
 [node name="dig" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 456.0
@@ -86,18 +91,18 @@ custom_fonts/font = ExtResource( 4 )
 text = "Cooldown"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 152.0
+margin_top = 132.0
 margin_right = 916.0
 margin_bottom = 497.0
 size_flags_vertical = 3
 
 [node name="logs" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer4"]
 margin_right = 916.0
-margin_bottom = 345.0
+margin_bottom = 365.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/mono_font = SubResource( 1 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/mono_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
 text = "
 "
 

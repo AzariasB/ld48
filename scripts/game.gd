@@ -6,6 +6,7 @@ var depth = 0
 var drill_mult = 1
 var drill_bonus = 0
 var drilled_depth = 0.0
+var heating_steps = 10
 var cooling_mult = 1
 
 var money = 0
@@ -46,7 +47,7 @@ func _process(delta):
 	self.drilled_depth += (delta * drill_mult + drill_bonus)
 	if self.drilled_depth >= 1:
 		self.drilled_depth -= 1
-		temperature_node.increase_progress(1)
+		temperature_node.increase_progress(self.heating_steps)
 		self._increase_depth(1)
 	
 func _gain_money(money):
@@ -60,7 +61,7 @@ func _loose_money(lost):
 func _manual_dig():
 	self._increase_depth(1)
 	#Debug only
-	self._gain_money(1)
+	self._gain_money(100)
 
 func _cooldown():
 	self.temperature_node.increase_progress(-1 * cooling_mult)
@@ -82,8 +83,13 @@ func _process_purchase(purchase_type):
 		global.PurchaseType.BUCKET_O_WATER:
 			cooling_mult = 2
 		global.PurchaseType.CENTRAL_AIR_CONDITIONER:
-			cooling_mult = 3
+			heating_steps = 5
 		global.PurchaseType.COLD_WATER:
-			cooling_mult = 4
-		global.PurchaseType.COOLING_LIQUID:
 			cooling_mult = 5
+		global.PurchaseType.COOLING_LIQUID:
+			heating_steps = 1
+		global.PurchaseType.METAL_DETECTOR:
+			min_money = -1
+			max_money = 3
+		global.PurchaseType.ENGINE_REPAIR:
+			self.temperature_node.set_progress(0.0)

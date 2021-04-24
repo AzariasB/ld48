@@ -1,6 +1,7 @@
 extends Node
 
 enum PurchaseType {
+	NONE,
 	BASIC_DRILL,
 	NORMAL_DRILL,
 	ADVANCED_DRILL,
@@ -11,7 +12,18 @@ enum PurchaseType {
 	CENTRAL_AIR_CONDITIONER,
 	COOLING_LIQUID,
 	
-	METAL_DETECTOR
+	GLOVES,
+	SHOVEL,
+	PICKAXE,
+	EXCAVATOR,
+	
+	SIEVE,
+	METAL_DETECTOR,
+	MAGNET,
+	SCANNER,
+	
+	ENGINE_REPAIR,
+	IMPROVED_DRILL_ENGINE,
 }
 
 signal money_change(money)
