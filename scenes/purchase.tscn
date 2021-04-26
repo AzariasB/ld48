@@ -27,16 +27,16 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 837.0
-margin_bottom = 514.0
+margin_right = 810.0
+margin_bottom = 57.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="HBoxContainer"]
-margin_top = 242.0
-margin_right = 545.0
-margin_bottom = 267.0
+margin_top = 13.0
+margin_right = 583.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 text = "Name"
@@ -45,20 +45,20 @@ __meta__ = {
 }
 
 [node name="Price" type="Label" parent="HBoxContainer"]
-margin_left = 549.0
-margin_top = 242.0
-margin_right = 613.0
-margin_bottom = 267.0
+margin_left = 587.0
+margin_top = 13.0
+margin_right = 651.0
+margin_bottom = 38.0
 custom_fonts/font = ExtResource( 1 )
 text = "Price €"
 
 [node name="Button" type="Button" parent="HBoxContainer"]
-margin_left = 617.0
-margin_right = 832.0
-margin_bottom = 509.0
+margin_left = 655.0
+margin_right = 805.0
+margin_bottom = 52.0
 custom_fonts/font = ExtResource( 1 )
 disabled = true
-enabled_focus_mode = 1
+keep_pressed_outside = true
 text = "Purchase"
 icon = ExtResource( 3 )
 align = 0

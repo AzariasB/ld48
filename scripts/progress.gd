@@ -13,4 +13,4 @@ func set_progress(progress, unit: String = ""):
 	self.value = progress
 
 func increase_progress(progress):
-	self.set_progress(max(self.value + progress, self.min_value) , self.unit)
+	self.set_progress(min(self.value + progress, self.max_value) , self.unit)
