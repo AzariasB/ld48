@@ -4,4 +4,6 @@
 ## TODO
 - Add icon for bonuses
 - Improve icon style
-- Smooth popup transitions
+- Victory music
+- Count the time it takes to complete the run
+- Show engines improvements

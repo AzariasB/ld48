@@ -30,9 +30,11 @@ onready var buttons = [
 ]
 onready var won_dialog = $WonDialog
 onready var tool_node = $HBoxContainer/Container/GridContainer/ToolName
-onready var moneygatherer_node = $HBoxContainer/Container/GridContainer/ToolName
+onready var moneygatherer_node = $HBoxContainer/Container/GridContainer/MoneyGatherer
 onready var drill_node = $HBoxContainer/Container/GridContainer/Drill
-onready var cooling_node = $HBoxContainer/Container/GridContainer/Drill
+onready var cooling_node = $HBoxContainer/Container/GridContainer/Cooling
+onready var engine_label = $HBoxContainer/Container/GridContainer/Label5
+onready var engine_node = $HBoxContainer/Container/GridContainer/Engine
 
 onready var click_sound = $Click
 
@@ -107,7 +109,7 @@ func _manual_dig():
 	$".".add_child(load("res://scenes/DirtParticles.tscn").instance())
 	self._increase_depth(dig_mult)
 	# Debug only
-	# self._gain_money(10)
+	self._gain_money(10)
 
 func _cooldown():
 	$CooldownSound.pitch_scale = rand_range(0.5, 2.0)
@@ -118,63 +120,68 @@ func _cooldown():
 
 func _on_marked_pressed():
 	$EnterShopSound.play()
-	self.market_node.popup_centered()
+	self.market_node.show()
+
+func _drill_bougth():
+	self.market_node.drill_bought()
+	temperature_node.get_parent().visible = true
+	set_process(true)
+	drill_mult = 2
+	drill_node.text = name
+	engine_node.text = "Default engine"
+	engine_label.text = "Engine"
 
 func _process_purchase(purchase_type, name):
 	$Purchase.pitch_scale = rand_range(0.7, 1.5)
 	$Purchase.play()
 	match purchase_type:
 		global.PurchaseType.BASIC_DRILL_1:
-			self.market_node.drill_bought()
-			temperature_node.get_parent().visible = true
-			set_process(true)
-			drill_mult = 2
-			tool_node.text = name
+			_drill_bougth()
 		global.PurchaseType.BASIC_DRILL_2:
 			drill_mult  = 4
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.BASIC_DRILL_3:
 			drill_mult = 6
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.BASIC_DRILL_4:
 			drill_mult = 8
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.MECHANICAL_DRILL_1:
 			drill_mult = 16
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.MECHANICAL_DRILL_2:
 			drill_mult = 32
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.MECHANICAL_DRILL_3:
 			drill_mult = 64
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.MECHANICAL_DRILL_4:
 			drill_mult = 128
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.ELECTRIC_DRILL_1:
 			drill_mult = 256
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.ELECTRIC_DRILL_2:
 			drill_mult = 300
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.ELECTRIC_DRILL_3:
 			drill_mult = 500
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.ELECTRIC_DRILL_4:
 			drill_mult = 700
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.LASER_DRILL_1:
 			drill_mult = 50_000
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.LASER_DRILL_2:
 			drill_mult = 100_000
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.LASER_DRILL_3:
 			drill_mult = 500_000
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.LASER_DRILL_4:
 			drill_mult = 10_000_000
-			tool_node.text = name
+			drill_node.text = name
 		global.PurchaseType.BUCKET_O_WATER:
 			cooling_mult = 25
 			cooling_node.text = name
@@ -242,8 +249,10 @@ func _process_purchase(purchase_type, name):
 			self.temperature_node.set_progress(0.0)
 		global.PurchaseType.IMPROVED_DRILL_ENGINE:
 			self.temperature_node.max_value = 5000
+			engine_node.text = "Improved engine"
 		global.PurchaseType.ENGINE_AUTOREPAIR:
 			self.auto_reparing = true
+			engine_node.text = "Improved, autoreparing engine"
 
 
 func _on_MusicToggle_pressed():

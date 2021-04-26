@@ -5,9 +5,6 @@ const DEFAULT_WAIT_TIME = 0.3
 var previous_var = 0
 var display_value = 0
 
-func _ready():
-	$Tween.connect("tween_step", self, "_tween_step")
-
 func _display_value(value: int):
 	$moneyValue.text = str(value) + " €"
 

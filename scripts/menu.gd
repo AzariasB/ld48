@@ -18,6 +18,10 @@ func _on_play_pressed():
 func _on_help_pressed():
 	$Click.play()
 	$AcceptDialog.popup_centered()
+	$Tween.interpolate_property($AcceptDialog,"modulate:a",0, 1, 0.2,
+		Tween.TRANS_LINEAR, 
+		Tween.EASE_IN)
+	$Tween.start()
 
 
 func _on_quit_pressed():
@@ -26,3 +30,9 @@ func _on_quit_pressed():
 
 func _on_help_hide():
 	$Click.play()
+	$Tween.interpolate_property($AcceptDialog,"modulate:a",1, 0, 0.2,
+		Tween.TRANS_LINEAR, 
+		Tween.EASE_IN)
+	$Tween.start()
+	yield($Tween, "tween_completed")
+	$AcceptDialog.hide()
