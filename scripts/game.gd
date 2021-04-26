@@ -54,12 +54,20 @@ func _autorepair():
 		self.temperature_node.set_progress(0.0)
 
 func _finish_game():
+	var time = $Countup._to_time()
 	end_node.emitting = true
 	end_node.amount = 100
 	for b in self.buttons:
 		b.disabled = true
 	set_process(false)
 	won_dialog.popup_centered_clamped()
+	$Tween.interpolate_property(won_dialog, "modulate:a", 0, 1, 0.2, 
+	Tween.TRANS_LINEAR,
+	 Tween.EASE_IN)
+	$Tween.start()
+	$WinTheme.play()
+	$WonDialog/VBoxContainer/MainText.text = "You reached the core of the earth in " + str(
+		time) + "\nCan't really get deeper than that"
 
 func _menu_clicked():
 	click_sound.play()
@@ -110,7 +118,7 @@ func _manual_dig():
 	$".".add_child(load("res://scenes/DirtParticles.tscn").instance())
 	self._increase_depth(dig_mult)
 	# Debug only
-	self._gain_money(10)
+	# self._gain_money(10)
 
 func _cooldown():
 	$CooldownSound.pitch_scale = rand_range(0.5, 2.0)
