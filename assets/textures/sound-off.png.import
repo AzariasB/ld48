@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/layer_3.png-079b1a12625b05dd47fd6c39cbdf7a71.stex"
+path="res://.import/sound-off.png-2bc47baefbff4e9642c35ed9d8ba064a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/layer_3.png"
-dest_files=[ "res://.import/layer_3.png-079b1a12625b05dd47fd6c39cbdf7a71.stex" ]
+source_file="res://assets/textures/sound-off.png"
+dest_files=[ "res://.import/sound-off.png-2bc47baefbff4e9642c35ed9d8ba064a.stex" ]
 
 [params]
 

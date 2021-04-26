@@ -25,7 +25,7 @@ func _ready():
 	global.connect("purchase_made", self, "_update_condition")
 	self.button_node.connect("pressed", self, "_do_purchase")
 
-func _update_condition(purchase_type):
+func _update_condition(purchase_type, name):
 	if self.has_previous_purchase or self.bought:
 		return
 	self.has_previous_purchase = purchase_type == self.required_purchase
@@ -52,4 +52,4 @@ func _do_purchase():
 		self.check_node.visible = true
 		self.price_node.visible = false
 		self.button_node.visible = false
-	global.emit_signal("purchase_made", self.purchase_type)
+	global.emit_signal("purchase_made", self.purchase_type, self.text)

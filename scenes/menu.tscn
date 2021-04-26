@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/hand.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/textures/house.png" type="Texture" id=8]
 [ext_resource path="res://assets/musics/main_menu.mp3" type="AudioStream" id=9]
 [ext_resource path="res://scripts/music.gd" type="Script" id=10]
+[ext_resource path="res://assets/sounds/click.wav" type="AudioStream" id=11]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
@@ -200,6 +201,9 @@ dialog_autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
 
 [connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/help" to="." method="_on_help_pressed"]

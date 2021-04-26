@@ -1,6 +1,5 @@
 extends Control
 
-
 var drill_temperature = 0
 var drill_mult = 1
 var drill_bonus = 0
@@ -22,7 +21,7 @@ onready var temperature_node = $HBoxContainer/Temp/Temperature
 onready var cooldown_node = $HBoxContainer/Temp/cooldown
 onready var market_node = $Market
 onready var money_node = $HBoxContainer/VBoxContainer/HBoxContainer/moneyValue
-onready var depth_node = $HBoxContainer/Depth
+onready var depth_node = $HBoxContainer/Container/Depth
 onready var end_node = $EndNode/Confeti
 onready var buttons = [
 	$HBoxContainer/VBoxContainer/dig,
@@ -30,6 +29,12 @@ onready var buttons = [
 	$HBoxContainer/VBoxContainer/HBoxContainer/goMarket
 ]
 onready var won_dialog = $WonDialog
+onready var tool_node = $HBoxContainer/Container/GridContainer/ToolName
+onready var moneygatherer_node = $HBoxContainer/Container/GridContainer/ToolName
+onready var drill_node = $HBoxContainer/Container/GridContainer/Drill
+onready var cooling_node = $HBoxContainer/Container/GridContainer/Drill
+
+onready var click_sound = $Click
 
 func _ready():
 	randomize()
@@ -56,9 +61,11 @@ func _finish_game():
 
 func _menu_clicked():
 	get_tree().change_scene("res://scenes/menu.tscn")
+	click_sound.play()
 
 func _replay_clicked():
 	get_tree().change_scene("res://scenes/game.tscn")
+	click_sound.play()
 
 func _increase_depth(depth):
 	depth_node.value += depth
@@ -100,7 +107,7 @@ func _manual_dig():
 	$".".add_child(load("res://scenes/DirtParticles.tscn").instance())
 	self._increase_depth(dig_mult)
 	#Debug only
-	self._gain_money(100)
+	#self._gain_money(100)
 
 func _cooldown():
 	$CooldownSound.pitch_scale = rand_range(0.5, 2.0)
@@ -113,7 +120,7 @@ func _on_marked_pressed():
 	$EnterShopSound.play()
 	self.market_node.popup_centered()
 
-func _process_purchase(purchase_type):
+func _process_purchase(purchase_type, name):
 	$Purchase.pitch_scale = rand_range(0.7, 1.5)
 	$Purchase.play()
 	match purchase_type:
@@ -122,83 +129,135 @@ func _process_purchase(purchase_type):
 			temperature_node.get_parent().visible = true
 			set_process(true)
 			drill_mult = 2
+			tool_node.text = name
 		global.PurchaseType.BASIC_DRILL_2:
 			drill_mult  = 4
+			tool_node.text = name
 		global.PurchaseType.BASIC_DRILL_3:
 			drill_mult = 6
+			tool_node.text = name
 		global.PurchaseType.BASIC_DRILL_4:
 			drill_mult = 8
+			tool_node.text = name
 		global.PurchaseType.MECHANICAL_DRILL_1:
 			drill_mult = 16
+			tool_node.text = name
 		global.PurchaseType.MECHANICAL_DRILL_2:
 			drill_mult = 32
+			tool_node.text = name
 		global.PurchaseType.MECHANICAL_DRILL_3:
 			drill_mult = 64
+			tool_node.text = name
 		global.PurchaseType.MECHANICAL_DRILL_4:
 			drill_mult = 128
+			tool_node.text = name
 		global.PurchaseType.ELECTRIC_DRILL_1:
 			drill_mult = 256
+			tool_node.text = name
 		global.PurchaseType.ELECTRIC_DRILL_2:
 			drill_mult = 300
+			tool_node.text = name
 		global.PurchaseType.ELECTRIC_DRILL_3:
 			drill_mult = 500
+			tool_node.text = name
 		global.PurchaseType.ELECTRIC_DRILL_4:
 			drill_mult = 700
+			tool_node.text = name
 		global.PurchaseType.LASER_DRILL_1:
 			drill_mult = 50_000
+			tool_node.text = name
 		global.PurchaseType.LASER_DRILL_2:
 			drill_mult = 100_000
+			tool_node.text = name
 		global.PurchaseType.LASER_DRILL_3:
 			drill_mult = 500_000
+			tool_node.text = name
 		global.PurchaseType.LASER_DRILL_4:
 			drill_mult = 10_000_000
+			tool_node.text = name
 		global.PurchaseType.BUCKET_O_WATER:
 			cooling_mult = 25
+			cooling_node.text = name
 		global.PurchaseType.COLD_WATER:
 			cooling_mult = 100
+			cooling_node.text = name
 		global.PurchaseType.CENTRAL_AIR_CONDITIONER:
 			heating_steps = 5
+			cooling_node.text = name
 		global.PurchaseType.COOLING_LIQUID:
 			heating_steps = 1
+			cooling_node.text = name
 		global.PurchaseType.GLOVES_1:
 			dig_mult = 2
+			tool_node.name = name
 		global.PurchaseType.GLOVES_2:
 			dig_mult = 5
+			tool_node.name = name
 		global.PurchaseType.SHOVEL_1:
 			dig_mult = 10
+			tool_node.name = name
 		global.PurchaseType.SHOVEL_2:
 			dig_mult = 50
+			tool_node.name = name
 		global.PurchaseType.PICKAXE_1:
 			dig_mult = 100
+			tool_node.name = name
 		global.PurchaseType.PICKAXE_2:
 			dig_mult = 200
+			tool_node.name = name
 		global.PurchaseType.EXCAVATOR_1:
 			dig_mult = 1000
+			tool_node.name = name
 		global.PurchaseType.EXCAVATOR_2:
 			dig_mult = 2500
+			tool_node.name = name
 		global.PurchaseType.EXCAVATOR_3:
 			dig_mult = 100_000
+			tool_node.name = name
 		global.PurchaseType.SIEVE:
 			min_money = 5
+			moneygatherer_node.text = name
 			max_money = 15
 		global.PurchaseType.METAL_DETECTOR:
 			min_money = 15
 			max_money = 20
+			moneygatherer_node.text = name
 		global.PurchaseType.MAGNET:
 			min_money = 15
 			max_money = 40
+			moneygatherer_node.text = name
 		global.PurchaseType.SCANNER_1:
 			min_money = 30
 			max_money = 50
+			moneygatherer_node.text = name
 		global.PurchaseType.SCANNER_2:
 			min_money = 50
 			max_money = 75
+			moneygatherer_node.text = name
 		global.PurchaseType.SCANNER_3:
 			min_money = 60
 			max_money = 100
+			moneygatherer_node.text = name
 		global.PurchaseType.ENGINE_REPAIR:
 			self.temperature_node.set_progress(0.0)
 		global.PurchaseType.IMPROVED_DRILL_ENGINE:
 			self.temperature_node.max_value = 5000
 		global.PurchaseType.ENGINE_AUTOREPAIR:
 			self.auto_reparing = true
+
+
+func _on_MusicToggle_pressed():
+	click_sound.play()
+	AudioServer.set_bus_mute(1, not AudioServer.is_bus_mute(1))
+	
+
+
+func _on_SoundToggle_pressed():
+	click_sound.play()
+	AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
+
+
+func _on_Pause_pressed():
+	click_sound.play()
+	get_tree().paused = not get_tree().paused
+

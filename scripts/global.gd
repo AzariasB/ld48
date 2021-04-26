@@ -58,6 +58,6 @@ signal max_temperature_reached()
 signal depth_change(depth)
 
 signal money_used(money)
-signal purchase_made(purchase_type)
+signal purchase_made(purchase_type, text)
 
 signal end_reached()

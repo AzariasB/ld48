@@ -13,7 +13,6 @@ func set_progress(progress, unit: String = ""):
 	self.value = progress
 
 func increase_progress(progress):
-	if self.value < self.max_value:
-		self.set_progress(max(self.min_value, min(self.value + progress, self.max_value)) , self.unit)	
-		if self.value >= self.max_value:
-			global.emit_signal("max_temperature_reached")
+	self.set_progress(max(self.min_value, min(self.value + progress, self.max_value)) , self.unit)	
+	if self.value >= self.max_value:
+		global.emit_signal("max_temperature_reached")

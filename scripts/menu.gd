@@ -11,12 +11,18 @@ func _ready():
 
 
 func _on_play_pressed():
+	$Click.play()
 	get_tree().change_scene("res://scenes/game.tscn")
 
 
 func _on_help_pressed():
+	$Click.play()
 	$AcceptDialog.popup_centered()
 
 
 func _on_quit_pressed():
 	get_tree().quit(0)
+
+
+func _on_help_confirmed():
+	$Click.play()

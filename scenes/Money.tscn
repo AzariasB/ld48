@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/Lato/Lato-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/money.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Shake"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:margin_bottom")
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "values": [ 0.0, 100 ]
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 40
 font_data = ExtResource( 1 )
 
@@ -33,13 +33,13 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Shake = SubResource( 2 )
+anims/Shake = SubResource( 1 )
 
 [node name="moneyValue" type="Label" parent="."]
 margin_right = 54.0
 margin_bottom = 49.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "0 €"
 align = 2
 __meta__ = {

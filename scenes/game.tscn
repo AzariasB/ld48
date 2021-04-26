@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scenes/progress.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/th_background.png" type="Texture" id=2]
@@ -20,6 +20,19 @@
 [ext_resource path="res://assets/sounds/shop_enter.wav" type="AudioStream" id=18]
 [ext_resource path="res://assets/sounds/gold_found.wav" type="AudioStream" id=19]
 [ext_resource path="res://assets/sounds/purchase.wav" type="AudioStream" id=20]
+[ext_resource path="res://assets/musics/depth_1.mp3" type="AudioStream" id=21]
+[ext_resource path="res://assets/textures/sound-off.png" type="Texture" id=22]
+[ext_resource path="res://scripts/music.gd" type="Script" id=23]
+[ext_resource path="res://assets/textures/speaker-off.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/pause-button.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/house.png" type="Texture" id=26]
+[ext_resource path="res://assets/sounds/click.wav" type="AudioStream" id=27]
+
+[sub_resource type="InputEventAction" id=7]
+action = "M"
+
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -77,42 +90,170 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_right = 1.18848
-anchor_bottom = 1.02778
-margin_right = -193.0
-margin_bottom = -16.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="Depth" parent="HBoxContainer" instance=ExtResource( 11 )]
+[node name="Container" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 400.0
+margin_bottom = 576.0
+
+[node name="Depth" parent="HBoxContainer/Container" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 510.0
-margin_bottom = 576.0
+margin_right = 400.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 400, 0 )
-size_flags_horizontal = 3
 max_value = 637800000
 
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Container"]
+margin_top = 304.0
+margin_right = 400.0
+margin_bottom = 522.0
+size_flags_vertical = 7
+columns = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Container/GridContainer"]
+margin_right = 198.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+text = "Tool"
+
+[node name="ToolName" type="Label" parent="HBoxContainer/Container/GridContainer"]
+margin_left = 202.0
+margin_right = 400.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+text = "Bare hands"
+align = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/Container/GridContainer"]
+margin_top = 37.0
+margin_right = 198.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+text = "Money gatherer"
+
+[node name="MoneyGatherer" type="Label" parent="HBoxContainer/Container/GridContainer"]
+margin_left = 202.0
+margin_top = 37.0
+margin_right = 400.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 274.391, -779.842 )
+size_flags_horizontal = 3
+text = "Nothing"
+align = 2
+
+[node name="Label3" type="Label" parent="HBoxContainer/Container/GridContainer"]
+margin_top = 74.0
+margin_right = 198.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+text = "Drill"
+
+[node name="Drill" type="Label" parent="HBoxContainer/Container/GridContainer"]
+margin_left = 202.0
+margin_top = 74.0
+margin_right = 400.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+text = "Nothing"
+align = 2
+
+[node name="Label4" type="Label" parent="HBoxContainer/Container/GridContainer"]
+margin_top = 111.0
+margin_right = 198.0
+margin_bottom = 144.0
+size_flags_horizontal = 3
+text = "Cooling"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cooling" type="Label" parent="HBoxContainer/Container/GridContainer"]
+margin_left = 202.0
+margin_top = 111.0
+margin_right = 400.0
+margin_bottom = 144.0
+rect_pivot_offset = Vector2( 122.001, -912.576 )
+size_flags_horizontal = 3
+text = "Spitting"
+align = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Container"]
+margin_left = 94.0
+margin_top = 526.0
+margin_right = 306.0
+margin_bottom = 576.0
+size_flags_horizontal = 6
+
+[node name="MusicToggle" type="Button" parent="HBoxContainer/Container/HBoxContainer"]
+pause_mode = 2
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+focus_mode = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+enabled_focus_mode = 1
+icon = ExtResource( 22 )
+expand_icon = true
+
+[node name="SoundToggle" type="Button" parent="HBoxContainer/Container/HBoxContainer"]
+pause_mode = 2
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+focus_mode = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+enabled_focus_mode = 1
+shortcut = SubResource( 8 )
+icon = ExtResource( 24 )
+expand_icon = true
+
+[node name="Pause" type="Button" parent="HBoxContainer/Container/HBoxContainer"]
+pause_mode = 2
+margin_left = 108.0
+margin_right = 158.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+shortcut_in_tooltip = false
+icon = ExtResource( 25 )
+expand_icon = true
+
+[node name="Menu" type="Button" parent="HBoxContainer/Container/HBoxContainer"]
+pause_mode = 2
+margin_left = 162.0
+margin_right = 212.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+shortcut_in_tooltip = false
+icon = ExtResource( 26 )
+expand_icon = true
+
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 514.0
+margin_left = 404.0
 margin_right = 1024.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_right = 510.0
+margin_right = 620.0
 margin_bottom = 286.0
 size_flags_vertical = 3
 alignment = 1
 
 [node name="moneyValue" parent="HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_right = 253.0
+margin_right = 308.0
 margin_bottom = 286.0
 
 [node name="goMarket" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 257.0
-margin_right = 510.0
+margin_left = 312.0
+margin_right = 620.0
 margin_bottom = 286.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -123,7 +264,7 @@ expand_icon = true
 
 [node name="dig" type="Button" parent="HBoxContainer/VBoxContainer"]
 margin_top = 290.0
-margin_right = 510.0
+margin_right = 620.0
 margin_bottom = 576.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -186,7 +327,6 @@ expand_icon = true
 [node name="EndNode" type="Node2D" parent="."]
 
 [node name="Confeti" type="Particles2D" parent="EndNode"]
-visible = false
 position = Vector2( 361.874, -36.602 )
 emitting = false
 amount = 1
@@ -279,6 +419,19 @@ volume_db = -30.0
 stream = ExtResource( 20 )
 volume_db = -15.0
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+bus = "MainMusic"
+script = ExtResource( 23 )
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 27 )
+
+[connection signal="pressed" from="HBoxContainer/Container/HBoxContainer/MusicToggle" to="." method="_on_MusicToggle_pressed"]
+[connection signal="pressed" from="HBoxContainer/Container/HBoxContainer/SoundToggle" to="." method="_on_SoundToggle_pressed"]
+[connection signal="pressed" from="HBoxContainer/Container/HBoxContainer/Pause" to="." method="_on_Pause_pressed"]
+[connection signal="pressed" from="HBoxContainer/Container/HBoxContainer/Menu" to="." method="_menu_clicked"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/goMarket" to="." method="_on_marked_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/dig" to="." method="_manual_dig"]
 [connection signal="pressed" from="HBoxContainer/Temp/cooldown" to="." method="_cooldown"]

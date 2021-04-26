@@ -10,3 +10,5 @@ func init(money_value):
 	$AnimationPlayer.play(anim)
 	$AnimationPlayer.connect("animation_finished", self, "_destroy")
 
+func _destroy(anim_name):
+	get_parent().remove_child(self)
