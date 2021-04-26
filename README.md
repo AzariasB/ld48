@@ -4,4 +4,4 @@
 ## TODO
 - Add icon for bonuses
 - Improve icon style
-- Smooth transitions
+- Smooth popup transitions

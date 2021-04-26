@@ -65,7 +65,7 @@ func _menu_clicked():
 
 func _replay_clicked():
 	click_sound.play()
-	Transition.fad_to("res://scenes/game.tscn")
+	Transition.fade_to("res://scenes/game.tscn")
 
 func _increase_depth(depth):
 	depth_node.value += depth
@@ -106,8 +106,8 @@ func _manual_dig():
 	$DigSound.play()
 	$".".add_child(load("res://scenes/DirtParticles.tscn").instance())
 	self._increase_depth(dig_mult)
-	#Debug only
-	# self._gain_money(100)
+	# Debug only
+	# self._gain_money(10)
 
 func _cooldown():
 	$CooldownSound.pitch_scale = rand_range(0.5, 2.0)
