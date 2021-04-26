@@ -15,26 +15,22 @@ func _ready():
 	for i in textures.size():
 		targets.push_front(round(max_value / exp(i*2)))
 	
-	print(targets)
 	current_target = 0
 
 func _display_value(value):
-	if value < 100:
-		return str(value) + " mm"
-	
 	if value < 1000:
-		return str(int(value) / 10.0) + " cm"
+		return str(int(value)) + " cm"
 	
 	if value < 10_00:
-		return str(int(value / 10) / 10.0) + " dm"
+		return str(int(value) / 10.0) + " dm"
 	
 	if value < 100_000:
-		return str(int(value / 1_00) / 10.0) + " m"
+		return str(int(value / 1_0) / 10.0) + " m"
 	
 	if value < 10_000_000:
-		return str(int(value / 100_000) / 10.0) + " km"
+		return str(int(value / 10_000) / 10.0) + " km"
 	
-	return str(int(value / 1_000_000)) + " km"
+	return str(int(value / 1_00_000)) + " km"
 
 func _next_target():
 	current_target += 1
@@ -49,7 +45,6 @@ func _update_local_progress(nw_value):
 	elif nw_value > 0:
 		var prev_value = 0 if current_target == 0 else targets[current_target - 1]
 		var remains = (current_value - nw_value) / float(current_value - prev_value)
-		print(remains)
 		sub_progress.rect_size.y = self.rect_size.y * (1 - remains)
 
 func _set_value(nw_value):

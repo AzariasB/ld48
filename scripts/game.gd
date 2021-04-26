@@ -14,8 +14,9 @@ var money_min_chance = -10
 var money_max_chance = 1
 var min_money = 1
 var max_money = 10
+var auto_reparing = false
 
-#Earth's radius in mm : 6378000000
+#Earth's radius in cm : 637800000
 
 onready var temperature_node = $HBoxContainer/Temp/Temperature
 onready var cooldown_node = $HBoxContainer/Temp/cooldown
@@ -24,7 +25,7 @@ onready var money_node = $HBoxContainer/VBoxContainer/HBoxContainer/moneyValue
 onready var depth_node = $HBoxContainer/Depth
 onready var end_node = $EndNode/Confeti
 onready var buttons = [
-	$HBoxContainer/VBoxContainer/HBoxContainer2/dig,
+	$HBoxContainer/VBoxContainer/dig,
 	cooldown_node,
 	$HBoxContainer/VBoxContainer/HBoxContainer/goMarket
 ]
@@ -38,8 +39,12 @@ func _ready():
 	temperature_node.set_progress(0.0)
 	global.connect("purchase_made", self, "_process_purchase")
 	global.connect("money_used", self, "_loose_money")
-
+	global.connect("max_temperature_reached", self, "_autorepair")
 	global.connect("end_reached", self, "_finish_game", [], CONNECT_ONESHOT)
+
+func _autorepair():
+	if auto_reparing:
+		self.temperature_node.set_progress(0.0)
 
 func _finish_game():
 	end_node.emitting = true
@@ -81,9 +86,10 @@ func _process(delta):
 		temperature_node.increase_progress(self.heating_steps)
 	
 func _gain_money(money):
-	self.money += money
-	self.money_node.text = str(self.money) + " €"
-	global.emit_signal("money_change", self.money)
+	if money != 0:
+		self.money += money
+		self.money_node.set_value(self.money)
+		global.emit_signal("money_change", self.money)
 
 func _loose_money(lost):
 	self._gain_money(-lost)
@@ -91,17 +97,15 @@ func _loose_money(lost):
 func _manual_dig():
 	$DigSound.pitch_scale = rand_range(0.5, 2.0)
 	$DigSound.play()
-	var dirt_particles : Particles2D = load("res://scenes/DirtParticles.tscn").instance()
-	$".".add_child(dirt_particles)
-	self._increase_depth(dig_mult * 10)
+	$".".add_child(load("res://scenes/DirtParticles.tscn").instance())
+	self._increase_depth(dig_mult)
 	#Debug only
-	#self._gain_money(100)
+	self._gain_money(100)
 
 func _cooldown():
 	$CooldownSound.pitch_scale = rand_range(0.5, 2.0)
 	$CooldownSound.play()
-	var water_particles : Particles2D = load("res://scenes/WaterParticles.tscn").instance()
-	$".".add_child(water_particles)
+	$".".add_child(load("res://scenes/WaterParticles.tscn").instance())
 	self.temperature_node.increase_progress(-1 * cooling_mult)
 	global.emit_signal("temperature_change", self.temperature_node.value)
 
@@ -196,3 +200,5 @@ func _process_purchase(purchase_type):
 			self.temperature_node.set_progress(0.0)
 		global.PurchaseType.IMPROVED_DRILL_ENGINE:
 			self.temperature_node.max_value = 5000
+		global.PurchaseType.ENGINE_AUTOREPAIR:
+			self.auto_reparing = true

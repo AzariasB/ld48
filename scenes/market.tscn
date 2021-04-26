@@ -406,7 +406,7 @@ margin_bottom = -5.0
 
 [node name="Container" type="VBoxContainer" parent="TabContainer/Engine"]
 margin_right = 813.0
-margin_bottom = 24.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
 
 [node name="Repair" parent="TabContainer/Engine/Container" instance=ExtResource( 4 )]
@@ -414,7 +414,7 @@ margin_right = 302.0
 margin_bottom = 64.0
 price = 100
 text = "Repair engine"
-purchase_type = 17
+purchase_type = 36
 one_use = false
 
 [node name="EngineImprove" parent="TabContainer/Engine/Container" instance=ExtResource( 4 )]
@@ -423,7 +423,15 @@ margin_right = 302.0
 margin_bottom = 132.0
 price = 500
 text = "Improved drill engine"
-purchase_type = 18
+purchase_type = 38
+
+[node name="AutoRepair" parent="TabContainer/Engine/Container" instance=ExtResource( 4 )]
+margin_right = 302.0
+margin_bottom = 64.0
+price = 10000
+text = "Engine auto reparing"
+purchase_type = 37
+required_purchase = 38
 
 [node name="Close" type="Button" parent="."]
 margin_left = 801.539

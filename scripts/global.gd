@@ -48,11 +48,13 @@ enum PurchaseType {
 	SCANNER_3
 	
 	ENGINE_REPAIR,
+	ENGINE_AUTOREPAIR,
 	IMPROVED_DRILL_ENGINE,
 }
 
 signal money_change(money)
 signal temperature_change(temperature)
+signal max_temperature_reached()
 signal depth_change(depth)
 
 signal money_used(money)

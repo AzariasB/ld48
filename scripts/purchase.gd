@@ -23,6 +23,7 @@ func _ready():
 	self.price_node.text = str(price) + "€"
 	global.connect("money_change", self, "_money_changed")
 	global.connect("purchase_made", self, "_update_condition")
+	self.button_node.connect("pressed", self, "_do_purchase")
 
 func _update_condition(purchase_type):
 	if self.has_previous_purchase or self.bought:
@@ -40,7 +41,6 @@ func _money_changed(money):
 func _update_internal_state():
 	if has_enough_money and has_previous_purchase:
 		self.button_node.disabled = false
-		self.button_node.connect("pressed", self, "_do_purchase")
 	else:
 		self.button_node.disabled = true
 
