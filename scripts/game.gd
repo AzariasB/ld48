@@ -93,6 +93,8 @@ func _loose_money(lost):
 func _manual_dig():
 	$DigSound.pitch_scale = rand_range(0.5, 2.0)
 	$DigSound.play()
+	var dirt_particles : Particles2D = load("res://scenes/DirtParticles.tscn").instance()
+	$".".add_child(dirt_particles)
 	self._increase_depth(dig_mult)
 	#Debug only
 	#self._gain_money(100)
@@ -100,6 +102,8 @@ func _manual_dig():
 func _cooldown():
 	$CooldownSound.pitch_scale = rand_range(0.5, 2.0)
 	$CooldownSound.play()
+	var water_particles : Particles2D = load("res://scenes/WaterParticles.tscn").instance()
+	$".".add_child(water_particles)
 	print(cooling_mult)
 	self.temperature_node.increase_progress(-1 * cooling_mult)
 	global.emit_signal("temperature_change", self.temperature_node.value)
