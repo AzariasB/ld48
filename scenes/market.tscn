@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/purchase.tscn" type="PackedScene" id=4]
 
 [node name="Market" type="PopupDialog"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -83,10 +82,10 @@ required_purchase = 3
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 43.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 40.0
+margin_right = -5.0
+margin_bottom = -5.0
 custom_constants/separation = 5
 
 [node name="BuckeOWater" parent="TabContainer/Coolings" instance=ExtResource( 4 )]
@@ -123,10 +122,10 @@ required_purchase = 7
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 43.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 40.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="Gloves" parent="TabContainer/Tools" instance=ExtResource( 4 )]
 margin_top = 138.0
@@ -163,10 +162,10 @@ required_purchase = 11
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 43.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 40.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="Seive" parent="TabContainer/Money" instance=ExtResource( 4 )]
 margin_top = 138.0
@@ -203,10 +202,10 @@ required_purchase = 15
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 43.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 40.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="Repair" parent="TabContainer/Engine" instance=ExtResource( 4 )]
 margin_top = 138.0

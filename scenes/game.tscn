@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/progress.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/th_background.png" type="Texture" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://assets/textures/th_value.png" type="Texture" id=10]
 [ext_resource path="res://scenes/Depth.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/textures/glitter.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/shovel.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/lower_temperature.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/cart.png" type="Texture" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -93,21 +96,22 @@ __meta__ = {
 }
 
 [node name="Depth" parent="HBoxContainer" instance=ExtResource( 11 )]
+margin_bottom = 782.0
 max_value = 6378000000
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 104.0
-margin_right = 870.0
-margin_bottom = 576.0
+margin_right = 1190.0
+margin_bottom = 782.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_right = 766.0
+margin_right = 1086.0
 margin_bottom = 57.0
 alignment = 1
 
 [node name="moneyValue" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 766.0
+margin_right = 1086.0
 margin_bottom = 57.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -119,33 +123,37 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 margin_top = 61.0
-margin_right = 766.0
+margin_right = 1086.0
 margin_bottom = 138.0
 
 [node name="dig" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 381.0
+margin_right = 541.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Dig"
+icon = ExtResource( 13 )
+expand_icon = true
 
 [node name="cooldown" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 385.0
-margin_right = 766.0
+margin_left = 545.0
+margin_right = 1086.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Cooldown"
+icon = ExtResource( 14 )
+expand_icon = true
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 margin_top = 142.0
-margin_right = 766.0
-margin_bottom = 495.0
+margin_right = 1086.0
+margin_bottom = 701.0
 size_flags_vertical = 3
 
 [node name="logs" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer4"]
-margin_right = 766.0
-margin_bottom = 353.0
+margin_right = 1086.0
+margin_bottom = 559.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/mono_font = SubResource( 2 )
@@ -154,24 +162,26 @@ text = "
 "
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 499.0
-margin_right = 766.0
-margin_bottom = 576.0
+margin_top = 705.0
+margin_right = 1086.0
+margin_bottom = 782.0
 
 [node name="goMarket" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 766.0
+margin_right = 1086.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Market"
+icon = ExtResource( 15 )
+expand_icon = true
 
 [node name="Temperature" parent="HBoxContainer" instance=ExtResource( 1 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
-margin_left = 874.0
+margin_left = 1194.0
 margin_top = 0.0
-margin_right = 1024.0
-margin_bottom = 576.0
+margin_right = 1344.0
+margin_bottom = 782.0
 rect_min_size = Vector2( 150, 576 )
 texture_under = ExtResource( 2 )
 texture_over = ExtResource( 9 )
@@ -202,7 +212,6 @@ process_material = SubResource( 7 )
 texture = ExtResource( 12 )
 
 [node name="WonDialog" type="PopupDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

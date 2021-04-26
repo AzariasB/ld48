@@ -4,6 +4,7 @@ extends Control
 onready var label = $VBoxContainer/Label
 onready var playButton = $VBoxContainer/play
 onready var helpButton = $VBoxContainer/help
+onready var music_node =$music
 
 func _ready():
 	playButton.grab_focus()
