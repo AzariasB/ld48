@@ -232,8 +232,8 @@ func _process_purchase(purchase_type, name):
 			tool_node.name = name
 		global.PurchaseType.SIEVE:
 			min_money = 5
-			moneygatherer_node.text = name
 			max_money = 15
+			moneygatherer_node.text = name
 		global.PurchaseType.METAL_DETECTOR:
 			min_money = 15
 			max_money = 20
