@@ -9,18 +9,19 @@ onready var value_node = $DepthValue
 func _ready():
 	$DepthMax.text = _display_value(max_value)
 
+
 func _display_value(value):
 	if value < 1000:
 		return str(int(value)) + " cm"
 	
 	if value < 10_00:
-		return str(int(value) / 10.0) + " dm"
+		return str(int(value) / 10.0).pad_decimals(1) + " dm"
 	
 	if value < 100_000:
-		return str(int(value / 1_0) / 10.0) + " m"
+		return str(int(value / 1_0) / 10.0).pad_decimals(1) + " m"
 	
 	if value < 10_000_000:
-		return str(int(value / 10_000) / 10.0) + " km"
+		return str(int(value / 10_000) / 10.0).pad_decimals(1) + " km"
 	
 	return str(int(value / 1_00_000)) + " km"
 

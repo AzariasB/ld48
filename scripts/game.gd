@@ -95,6 +95,7 @@ func _process(delta):
 		temperature_node.increase_progress(self.heating_steps)
 	
 func _gain_money(money):
+	
 	if money != 0:
 		self.money += money
 		self.money_node.set_value(self.money)
