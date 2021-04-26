@@ -2,7 +2,7 @@ extends PanelContainer
 
 export(int) var price = 0
 export(String) var text = "Name"
-export(global.PurchaseType) var purchase_type = global.PurchaseType.NORMAL_DRILL
+export(global.PurchaseType) var purchase_type = global.PurchaseType.NONE
 export(global.PurchaseType) var required_purchase = global.PurchaseType.NONE
 export(bool) var one_use = true
 
@@ -13,6 +13,7 @@ var bought = false
 onready var button_node = $HBoxContainer/Button
 onready var text_node = $HBoxContainer/Title
 onready var price_node = $HBoxContainer/Price
+onready var check_node = $HBoxContainer/Check
 
 func _ready():
 	self.has_previous_purchase = self.required_purchase == global.PurchaseType.NONE
@@ -49,6 +50,8 @@ func _do_purchase():
 	global.emit_signal("money_used", self.price)
 	if one_use:
 		self.bought = true
-		self.button_node.disabled = true
+		self.check_node.visible = true
+		self.price_node.visible = false
+		self.button_node.visible = false
 		self.button_node.disconnect("pressed", self, "_do_purchase")
 	global.emit_signal("purchase_made", self.purchase_type)

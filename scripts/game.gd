@@ -6,7 +6,7 @@ var drill_mult = 1
 var drill_bonus = 0
 var drilled_depth = 0.0
 var heating_steps = 10
-var cooling_mult = 1
+var cooling_mult = 5
 var dig_mult = 1
 
 var money = 0
@@ -18,6 +18,7 @@ var max_money = 10
 #Earth's radius in mm : 6378000000
 
 onready var temperature_node = $HBoxContainer/Temperature
+onready var cooldown_node = $HBoxContainer/VBoxContainer/HBoxContainer2/cooldown
 onready var market_node = $Market
 onready var money_node = $HBoxContainer/VBoxContainer/HBoxContainer/moneyValue
 onready var logs_dialog = $HBoxContainer/VBoxContainer/HBoxContainer4/logs
@@ -25,12 +26,14 @@ onready var depth_node = $HBoxContainer/Depth
 onready var end_node = $EndNode/Confeti
 onready var buttons = [
 	$HBoxContainer/VBoxContainer/HBoxContainer2/dig,
-	$HBoxContainer/VBoxContainer/HBoxContainer2/cooldown,
+	cooldown_node,
 	$HBoxContainer/VBoxContainer/HBoxContainer3/goMarket
 ]
 onready var won_dialog = $WonDialog
 
 func _ready():
+	randomize()
+	set_process(false)
 	depth_node.value = 0
 	temperature_node.value = 0
 	temperature_node.set_progress(0.0)
@@ -61,6 +64,7 @@ func _increase_depth(depth):
 	if won_money > 0:
 		money_made = round(rand_range(min_money, max_money))
 	if money_made > 0:
+		$NewMoney.pitch_scale = rand_range(0.7, 1.5)
 		$NewMoney.play()
 		self.logs_dialog.text += "Found " + str(money_made) + "€!\n"
 		self._gain_money(money_made)
@@ -73,9 +77,10 @@ func _process(delta):
 	
 	self.drilled_depth += (delta * drill_mult + drill_bonus)
 	if self.drilled_depth >= 1:
-		self.drilled_depth -= 1
+		var counted = floor(self.drilled_depth)
+		self._increase_depth(counted)
+		self.drilled_depth -= counted
 		temperature_node.increase_progress(self.heating_steps)
-		self._increase_depth(1)
 	
 func _gain_money(money):
 	self.money += money
@@ -95,6 +100,7 @@ func _manual_dig():
 func _cooldown():
 	$CooldownSound.pitch_scale = rand_range(0.5, 2.0)
 	$CooldownSound.play()
+	print(cooling_mult)
 	self.temperature_node.increase_progress(-1 * cooling_mult)
 	global.emit_signal("temperature_change", self.temperature_node.value)
 
@@ -106,30 +112,68 @@ func _process_purchase(purchase_type):
 	$Purchase.pitch_scale = rand_range(0.7, 1.5)
 	$Purchase.play()
 	match purchase_type:
-		global.PurchaseType.BASIC_DRILL:
+		global.PurchaseType.BASIC_DRILL_1:
+			self.market_node.drill_bought()
+			temperature_node.visible = true
+			cooldown_node.visible = true
+			set_process(true)
 			drill_mult = 2
-		global.PurchaseType.NORMAL_DRILL:
+		global.PurchaseType.BASIC_DRILL_2:
 			drill_mult  = 4
-		global.PurchaseType.ADVANCED_DRILL:
+		global.PurchaseType.BASIC_DRILL_3:
 			drill_mult = 6
-		global.PurchaseType.LASER_DRILL:
+		global.PurchaseType.BASIC_DRILL_4:
 			drill_mult = 8
+		global.PurchaseType.MECHANICAL_DRILL_1:
+			drill_mult = 16
+		global.PurchaseType.MECHANICAL_DRILL_2:
+			drill_mult = 32
+		global.PurchaseType.MECHANICAL_DRILL_3:
+			drill_mult = 64
+		global.PurchaseType.MECHANICAL_DRILL_4:
+			drill_mult = 128
+		global.PurchaseType.ELECTRIC_DRILL_1:
+			drill_mult = 256
+		global.PurchaseType.ELECTRIC_DRILL_2:
+			drill_mult = 300
+		global.PurchaseType.ELECTRIC_DRILL_3:
+			drill_mult = 500
+		global.PurchaseType.ELECTRIC_DRILL_4:
+			drill_mult = 700
+		global.PurchaseType.LASER_DRILL_1:
+			drill_mult = 50_000
+		global.PurchaseType.LASER_DRILL_2:
+			drill_mult = 100_000
+		global.PurchaseType.LASER_DRILL_3:
+			drill_mult = 500_000
+		global.PurchaseType.LASER_DRILL_4:
+			drill_mult = 1_000_000
 		global.PurchaseType.BUCKET_O_WATER:
-			cooling_mult = 7
-		global.PurchaseType.CENTRAL_AIR_CONDITIONER:
-			heating_steps = 10
+			cooling_mult = 25
 		global.PurchaseType.COLD_WATER:
-			cooling_mult = 20
+			cooling_mult = 100
+		global.PurchaseType.CENTRAL_AIR_CONDITIONER:
+			heating_steps = 5
 		global.PurchaseType.COOLING_LIQUID:
 			heating_steps = 1
-		global.PurchaseType.GLOVES:
+		global.PurchaseType.GLOVES_1:
 			dig_mult = 2
-		global.PurchaseType.SHOVEL:
+		global.PurchaseType.GLOVES_2:
 			dig_mult = 5
-		global.PurchaseType.PICKAXE:
+		global.PurchaseType.SHOVEL_1:
 			dig_mult = 10
-		global.PurchaseType.EXCAVATOR:
+		global.PurchaseType.SHOVEL_2:
 			dig_mult = 50
+		global.PurchaseType.PICKAXE_1:
+			dig_mult = 100
+		global.PurchaseType.PICKAXE_2:
+			dig_mult = 200
+		global.PurchaseType.EXCAVATOR_1:
+			dig_mult = 1000
+		global.PurchaseType.EXCAVATOR_2:
+			dig_mult = 2500
+		global.PurchaseType.EXCAVATOR_3:
+			dig_mult = 1_000_000
 		global.PurchaseType.SIEVE:
 			min_money = 5
 			max_money = 15
@@ -139,9 +183,15 @@ func _process_purchase(purchase_type):
 		global.PurchaseType.MAGNET:
 			min_money = 15
 			max_money = 40
-		global.PurchaseType.SCANNER:
+		global.PurchaseType.SCANNER_1:
 			min_money = 30
 			max_money = 50
+		global.PurchaseType.SCANNER_2:
+			min_money = 50
+			max_money = 75
+		global.PurchaseType.SCANNER_3:
+			min_money = 60
+			max_money = 100
 		global.PurchaseType.ENGINE_REPAIR:
 			self.temperature_node.set_progress(0.0)
 		global.PurchaseType.IMPROVED_DRILL_ENGINE:

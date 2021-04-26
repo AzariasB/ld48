@@ -11,9 +11,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -411.5
-margin_top = -134.5
+margin_top = -192.5
 margin_right = 411.5
-margin_bottom = 134.5
+margin_bottom = 192.5
 theme = ExtResource( 3 )
 popup_exclusive = true
 script = ExtResource( 2 )
@@ -22,183 +22,174 @@ __meta__ = {
 }
 
 [node name="TabContainer" type="TabContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -411.5
-margin_top = -133.0
-margin_right = 411.5
-margin_bottom = 133.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 1 )
 tab_align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Drills" type="VBoxContainer" parent="TabContainer"]
+[node name="Drills" type="ScrollContainer" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
 margin_top = 40.0
 margin_right = -5.0
 margin_bottom = -5.0
+size_flags_horizontal = 3
+scroll_horizontal_enabled = false
+
+[node name="Container" type="VBoxContainer" parent="TabContainer/Drills"]
+margin_right = 813.0
+margin_bottom = 235.0
+size_flags_horizontal = 3
 custom_constants/separation = 5
 
-[node name="BasicDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-margin_right = 813.0
-margin_bottom = 43.0
+[node name="BasicDrill1" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_right = 801.0
+margin_bottom = 64.0
 price = 10
-text = "Basic drill"
+text = "Basic drill level 1"
 purchase_type = 1
 
-[node name="NormalDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-margin_top = 48.0
-margin_right = 813.0
-margin_bottom = 91.0
+[node name="BasicDrill2" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 69.0
+margin_right = 801.0
+margin_bottom = 133.0
 price = 20
-text = "NormalDrill"
+text = "Basic drill level 2"
+purchase_type = 2
 required_purchase = 1
 
-[node name="AdvancedDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-margin_top = 96.0
-margin_right = 813.0
-margin_bottom = 139.0
-price = 40
-text = "Advanded drill"
+[node name="BasicDrill3" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 138.0
+margin_right = 801.0
+margin_bottom = 202.0
+price = 30
+text = "Basic drill level 3"
 purchase_type = 3
 required_purchase = 2
 
-[node name="LaserDrill" parent="TabContainer/Drills" instance=ExtResource( 4 )]
-margin_top = 144.0
-margin_right = 813.0
-margin_bottom = 187.0
-price = 80
-text = "Laser drill"
+[node name="BasicDrill4" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 207.0
+margin_right = 801.0
+margin_bottom = 271.0
+price = 40
+text = "Basic drill level 4"
 purchase_type = 4
 required_purchase = 3
 
-[node name="Coolings" type="VBoxContainer" parent="TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 40.0
-margin_right = -5.0
-margin_bottom = -5.0
-custom_constants/separation = 5
-
-[node name="BuckeOWater" parent="TabContainer/Coolings" instance=ExtResource( 4 )]
-margin_bottom = 41.0
-price = 10
-text = "Bucket'o'water"
+[node name="MechanicalDrill1" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 276.0
+margin_right = 801.0
+margin_bottom = 340.0
+price = 50
+text = "Mechanical drill level 1"
 purchase_type = 5
+required_purchase = 4
 
-[node name="ColdWater" parent="TabContainer/Coolings" instance=ExtResource( 4 )]
-margin_top = 46.0
-margin_bottom = 87.0
-price = 20
-text = "Cold water"
+[node name="MechanicalDrill2" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 345.0
+margin_right = 801.0
+margin_bottom = 409.0
+price = 100
+text = "Mechanical drill level 2"
 purchase_type = 6
 required_purchase = 5
 
-[node name="CentralAirConditioner" parent="TabContainer/Coolings" instance=ExtResource( 4 )]
-margin_top = 92.0
-margin_bottom = 133.0
-price = 40
-text = "Central air conditioner"
-purchase_type = 7
+[node name="MechanicalDrill3" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 414.0
+margin_right = 801.0
+margin_bottom = 478.0
+price = 150
+text = "Mechanical drill level 3"
+purchase_type = 6
 required_purchase = 6
 
-[node name="CoolingLiquid" parent="TabContainer/Coolings" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
-price = 80
-text = "Cooling liquid"
+[node name="MechanicalDrill4" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 483.0
+margin_right = 801.0
+margin_bottom = 547.0
+price = 200
+text = "Mechanical drill level 4"
 purchase_type = 8
 required_purchase = 7
 
-[node name="Tools" type="VBoxContainer" parent="TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 40.0
-margin_right = -5.0
-margin_bottom = -5.0
-
-[node name="Gloves" parent="TabContainer/Tools" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
-price = 20
-text = "Gloves"
+[node name="ElectricDrill1" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 552.0
+margin_right = 801.0
+margin_bottom = 616.0
+price = 500
+text = "Electric drill level 1"
 purchase_type = 9
+required_purchase = 8
 
-[node name="Shovel" parent="TabContainer/Tools" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
-price = 40
-text = "Shovel"
+[node name="ElectricDrill2" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 621.0
+margin_right = 801.0
+margin_bottom = 685.0
+price = 600
+text = "Electric drill level 2"
 purchase_type = 10
 required_purchase = 9
 
-[node name="Pickaxe" parent="TabContainer/Tools" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
-price = 80
-text = "Pickaxe"
+[node name="ElectricDrill3" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 690.0
+margin_right = 801.0
+margin_bottom = 754.0
+price = 700
+text = "Electric drill level 3"
 purchase_type = 11
 required_purchase = 10
 
-[node name="Excavator" parent="TabContainer/Tools" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
-price = 200
-text = "Excavator"
+[node name="ElectricDrill4" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 759.0
+margin_right = 801.0
+margin_bottom = 823.0
+price = 800
+text = "Electric drill level 4"
 purchase_type = 12
 required_purchase = 11
 
-[node name="Money" type="VBoxContainer" parent="TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 40.0
-margin_right = -5.0
-margin_bottom = -5.0
-
-[node name="Seive" parent="TabContainer/Money" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
-price = 50
-text = "Seive"
+[node name="LaserDrill1" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 828.0
+margin_right = 801.0
+margin_bottom = 892.0
+price = 1000
+text = "Laser drill level 1"
 purchase_type = 13
+required_purchase = 12
 
-[node name="MetalDetector" parent="TabContainer/Money" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
-price = 100
-text = "Metal detector"
+[node name="LaserDrill2" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 897.0
+margin_right = 801.0
+margin_bottom = 961.0
+price = 2000
+text = "Laser drill level 2"
 purchase_type = 14
 required_purchase = 13
 
-[node name="Magnet" parent="TabContainer/Money" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
-price = 300
-text = "Magnet"
+[node name="LaserDrill3" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 966.0
+margin_right = 801.0
+margin_bottom = 1030.0
+price = 3000
+text = "Laser drill level 3"
 purchase_type = 15
 required_purchase = 14
 
-[node name="Scanner" parent="TabContainer/Money" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
-price = 1000
-text = "Magnet"
+[node name="LaserDrill4" parent="TabContainer/Drills/Container" instance=ExtResource( 4 )]
+margin_top = 1035.0
+margin_right = 801.0
+margin_bottom = 1099.0
+price = 10000
+text = "Laser drill level 4"
 purchase_type = 16
 required_purchase = 15
 
-[node name="Engine" type="VBoxContainer" parent="TabContainer"]
+[node name="Tools" type="ScrollContainer" parent="TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -207,17 +198,229 @@ margin_top = 40.0
 margin_right = -5.0
 margin_bottom = -5.0
 
-[node name="Repair" parent="TabContainer/Engine" instance=ExtResource( 4 )]
+[node name="Container" type="VBoxContainer" parent="TabContainer/Tools"]
+margin_right = 813.0
+margin_bottom = 122.0
+size_flags_horizontal = 3
+
+[node name="Gloves1" parent="TabContainer/Tools/Container" instance=ExtResource( 4 )]
+margin_right = 813.0
+margin_bottom = 64.0
+price = 10
+text = "Gloves level 1"
+purchase_type = 21
+
+[node name="Gloves2" parent="TabContainer/Tools/Container" instance=ExtResource( 4 )]
+margin_right = 813.0
+margin_bottom = 64.0
+price = 20
+text = "Gloves level 2"
+purchase_type = 22
+required_purchase = 21
+
+[node name="Shovel1" parent="TabContainer/Tools/Container" instance=ExtResource( 4 )]
+margin_top = 68.0
+margin_right = 813.0
+margin_bottom = 132.0
+price = 40
+text = "Shovel level 1"
+purchase_type = 23
+required_purchase = 22
+
+[node name="Shovel2" parent="TabContainer/Tools/Container" instance=ExtResource( 4 )]
+margin_top = 68.0
+margin_right = 813.0
+margin_bottom = 132.0
+price = 80
+text = "Shovel level 2"
+purchase_type = 24
+required_purchase = 23
+
+[node name="Pickaxe1" parent="TabContainer/Tools/Container" instance=ExtResource( 4 )]
+margin_top = 136.0
+margin_right = 813.0
+margin_bottom = 200.0
+price = 200
+text = "Pickaxe level 1"
+purchase_type = 25
+required_purchase = 24
+
+[node name="Pickaxe2" parent="TabContainer/Tools/Container" instance=ExtResource( 4 )]
+margin_top = 136.0
+margin_right = 813.0
+margin_bottom = 200.0
+price = 500
+text = "Pickaxe level 2"
+purchase_type = 26
+required_purchase = 25
+
+[node name="Excavator1" parent="TabContainer/Tools/Container" instance=ExtResource( 4 )]
+margin_top = 204.0
+margin_right = 813.0
+margin_bottom = 268.0
+price = 1000
+text = "Excavator level 1"
+purchase_type = 27
+required_purchase = 26
+
+[node name="Excavator2" parent="TabContainer/Tools/Container" instance=ExtResource( 4 )]
+margin_top = 204.0
+margin_right = 813.0
+margin_bottom = 268.0
+price = 2000
+text = "Excavator level 2"
+purchase_type = 28
+required_purchase = 27
+
+[node name="Excavator3" parent="TabContainer/Tools/Container" instance=ExtResource( 4 )]
+margin_top = 204.0
+margin_right = 813.0
+margin_bottom = 268.0
+price = 5000
+text = "Excavator level 3"
+purchase_type = 29
+required_purchase = 28
+
+[node name="Money" type="ScrollContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 40.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Container" type="VBoxContainer" parent="TabContainer/Money"]
+margin_right = 813.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Seive" parent="TabContainer/Money/Container" instance=ExtResource( 4 )]
+margin_right = 813.0
+margin_bottom = 64.0
+price = 50
+text = "Seive"
+purchase_type = 30
+
+[node name="MetalDetector" parent="TabContainer/Money/Container" instance=ExtResource( 4 )]
+margin_top = 68.0
+margin_right = 813.0
+margin_bottom = 132.0
+price = 100
+text = "Metal detector"
+purchase_type = 31
+required_purchase = 30
+
+[node name="Magnet" parent="TabContainer/Money/Container" instance=ExtResource( 4 )]
+margin_top = 136.0
+margin_right = 813.0
+margin_bottom = 200.0
+price = 300
+text = "Magnet"
+purchase_type = 32
+required_purchase = 31
+
+[node name="Scanner1" parent="TabContainer/Money/Container" instance=ExtResource( 4 )]
+margin_top = 204.0
+margin_right = 813.0
+margin_bottom = 268.0
+price = 1000
+text = "Scanner level 1"
+purchase_type = 33
+required_purchase = 32
+
+[node name="Scanner2" parent="TabContainer/Money/Container" instance=ExtResource( 4 )]
+margin_top = 204.0
+margin_right = 813.0
+margin_bottom = 268.0
+price = 2000
+text = "Scanner level 2"
+purchase_type = 34
+required_purchase = 33
+
+[node name="Scanner3" parent="TabContainer/Money/Container" instance=ExtResource( 4 )]
+margin_top = 204.0
+margin_right = 813.0
+margin_bottom = 268.0
+price = 5000
+text = "Scanner level 3"
+purchase_type = 35
+required_purchase = 34
+
+[node name="Coolings" type="ScrollContainer" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 40.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Container" type="VBoxContainer" parent="TabContainer/Coolings"]
+margin_right = 813.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+custom_constants/separation = 5
+
+[node name="BuckeOWater" parent="TabContainer/Coolings/Container" instance=ExtResource( 4 )]
+margin_right = 813.0
+margin_bottom = 64.0
+price = 10
+text = "Bucket'o'water"
+purchase_type = 17
+
+[node name="ColdWater" parent="TabContainer/Coolings/Container" instance=ExtResource( 4 )]
+margin_top = 69.0
+margin_right = 813.0
+margin_bottom = 133.0
+price = 20
+text = "Cold water"
+purchase_type = 18
+required_purchase = 17
+
+[node name="CentralAirConditioner" parent="TabContainer/Coolings/Container" instance=ExtResource( 4 )]
 margin_top = 138.0
-margin_bottom = 179.0
+margin_right = 813.0
+margin_bottom = 202.0
+price = 40
+text = "Central air conditioner"
+purchase_type = 19
+required_purchase = 18
+
+[node name="CoolingLiquid" parent="TabContainer/Coolings/Container" instance=ExtResource( 4 )]
+margin_top = 207.0
+margin_right = 813.0
+margin_bottom = 271.0
+price = 80
+text = "Cooling liquid"
+purchase_type = 20
+required_purchase = 19
+
+[node name="Engine" type="ScrollContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 40.0
+margin_right = -778.0
+margin_bottom = -305.0
+
+[node name="Container" type="VBoxContainer" parent="TabContainer/Engine"]
+margin_right = 40.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Repair" parent="TabContainer/Engine/Container" instance=ExtResource( 4 )]
+margin_right = 302.0
+margin_bottom = 64.0
 price = 100
 text = "Repair engine"
 purchase_type = 17
 one_use = false
 
-[node name="EngineImprove" parent="TabContainer/Engine" instance=ExtResource( 4 )]
-margin_top = 138.0
-margin_bottom = 179.0
+[node name="EngineImprove" parent="TabContainer/Engine/Container" instance=ExtResource( 4 )]
+margin_top = 68.0
+margin_right = 302.0
+margin_bottom = 132.0
 price = 500
 text = "Improved drill engine"
 purchase_type = 18

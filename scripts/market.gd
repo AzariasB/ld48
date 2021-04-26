@@ -1,10 +1,17 @@
 extends PopupDialog
 
+onready var tabs = $TabContainer
 
 
 func _ready():
-	pass # Replace with function body.
+	tabs.set_tab_disabled(3, true)
+	tabs.set_tab_disabled(4, true)
 
 
 func _on_Close_pressed():
 	self.hide()
+
+
+func drill_bought():
+	tabs.set_tab_disabled(3, false)
+	tabs.set_tab_disabled(4, false)
