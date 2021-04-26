@@ -179,6 +179,28 @@ __meta__ = {
 stream = ExtResource( 9 )
 script = ExtResource( 10 )
 
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -331.5
+margin_top = -168.0
+margin_right = 331.5
+margin_bottom = 168.0
+window_title = "Help"
+dialog_text = "Dig your way to the center of the earth.
+
+When digging, you can find some money that will help you purchase some boosts to dig faster.
+
+The drill can help you automate the digging, but be aware that it can overheat !
+
+It might feel hard when starting, But with a few boosts purchased, it will go just fine !"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

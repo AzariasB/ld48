@@ -15,7 +15,7 @@ func _on_play_pressed():
 
 
 func _on_help_pressed():
-	pass
+	$AcceptDialog.popup_centered()
 
 
 func _on_quit_pressed():
