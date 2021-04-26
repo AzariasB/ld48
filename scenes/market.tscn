@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://resources/20lato.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/market.gd" type="Script" id=2]
 [ext_resource path="res://resources/theme.tres" type="Theme" id=3]
 [ext_resource path="res://scenes/purchase.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/close_icon.tres" type="Texture" id=5]
 
 [node name="Market" type="PopupDialog"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -41,8 +43,8 @@ size_flags_horizontal = 3
 scroll_horizontal_enabled = false
 
 [node name="Container" type="VBoxContainer" parent="TabContainer/Drills"]
-margin_right = 813.0
-margin_bottom = 235.0
+margin_right = 801.0
+margin_bottom = 1099.0
 size_flags_horizontal = 3
 custom_constants/separation = 5
 
@@ -434,12 +436,12 @@ purchase_type = 37
 required_purchase = 38
 
 [node name="Close" type="Button" parent="."]
-margin_left = 801.539
-margin_top = 0.707901
-margin_right = 824.539
-margin_bottom = 37.7079
+margin_left = 793.875
+margin_top = 1.25
+margin_right = 821.875
+margin_bottom = 34.25
 custom_fonts/font = ExtResource( 1 )
-text = "x"
+icon = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

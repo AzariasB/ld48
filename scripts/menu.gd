@@ -12,7 +12,7 @@ func _ready():
 
 func _on_play_pressed():
 	$Click.play()
-	get_tree().change_scene("res://scenes/game.tscn")
+	Transition.fade_to("res://scenes/game.tscn")
 
 
 func _on_help_pressed():
@@ -24,5 +24,5 @@ func _on_quit_pressed():
 	get_tree().quit(0)
 
 
-func _on_help_confirmed():
+func _on_help_hide():
 	$Click.play()

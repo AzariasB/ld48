@@ -5,10 +5,14 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer"]

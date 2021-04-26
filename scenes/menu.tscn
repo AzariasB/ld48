@@ -1,52 +1,24 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/hand.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://resources/theme.tres" type="Theme" id=3]
-[ext_resource path="res://assets/textures/menu_backgroud.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/cloud2.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/cloud1.png" type="Texture" id=6]
-[ext_resource path="res://resources/kindasin.tres" type="Texture" id=7]
-[ext_resource path="res://assets/textures/house.png" type="Texture" id=8]
+[ext_resource path="res://scenes/ParallaxBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/musics/main_menu.mp3" type="AudioStream" id=9]
 [ext_resource path="res://scripts/music.gd" type="Script" id=10]
 [ext_resource path="res://assets/sounds/click.wav" type="AudioStream" id=11]
 
-[sub_resource type="ParticlesMaterial" id=1]
-emission_shape = 2
-emission_box_extents = Vector3( 0, 50, 0 )
-flag_disable_z = true
-spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 100.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 1.2
-scale_random = 1.0
-scale_curve = ExtResource( 7 )
-
-[sub_resource type="ParticlesMaterial" id=2]
-emission_shape = 2
-emission_box_extents = Vector3( 0, 50, 0 )
-flag_disable_z = true
-spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = -100.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 1.2
-scale_random = 1.0
-scale_curve = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 25
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 size = 40
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "Scale"
 length = 2.0
 loop = true
@@ -75,51 +47,24 @@ tracks/1/keys = {
 "values": [ 0.0, 5.0, 0.0, -5.0 ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=4]
 size = 25
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 size = 20
 font_data = ExtResource( 2 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -1.33484
+margin_bottom = -1.33484
 theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="layers" type="Sprite" parent="."]
-position = Vector2( 494.68, 284.218 )
-scale = Vector2( 1.22473, 1.17163 )
-texture = ExtResource( 4 )
-
-[node name="Node2D" type="Node2D" parent="layers"]
-position = Vector2( 11.1476, -206.852 )
-scale = Vector2( 0.30895, 0.338967 )
-
-[node name="LeftClouds" type="Particles2D" parent="layers/Node2D"]
-position = Vector2( -1473.71, 59.3379 )
-amount = 2
-lifetime = 40.0
-process_material = SubResource( 1 )
-texture = ExtResource( 6 )
-
-[node name="RightClouds" type="Particles2D" parent="layers/Node2D"]
-position = Vector2( 1512.19, 271.141 )
-z_as_relative = false
-amount = 2
-lifetime = 40.0
-process_material = SubResource( 2 )
-texture = ExtResource( 5 )
-
-[node name="house" type="Sprite" parent="layers"]
-position = Vector2( 323.951, -75.2155 )
-scale = Vector2( 0.389181, 0.389181 )
-texture = ExtResource( 8 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -136,20 +81,22 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 151.0
-margin_bottom = 48.0
+margin_right = 252.0
+margin_bottom = 90.0
 rect_min_size = Vector2( 0, 48 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "To the core"
 align = 1
 valign = 1
 
 [node name="play" type="Button" parent="VBoxContainer"]
-margin_top = 68.0
-margin_right = 151.0
-margin_bottom = 131.0
+margin_top = 110.0
+margin_right = 252.0
+margin_bottom = 173.0
 rect_pivot_offset = Vector2( 75, 31 )
-custom_fonts/font = SubResource( 4 )
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
 text = "Play"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/play"]
@@ -157,20 +104,24 @@ autoplay = "Scale"
 playback_process_mode = 0
 playback_speed = 0.5
 method_call_mode = 1
-anims/Scale = SubResource( 5 )
+anims/Scale = SubResource( 3 )
 
 [node name="help" type="Button" parent="VBoxContainer"]
-margin_top = 151.0
-margin_right = 151.0
-margin_bottom = 194.0
-custom_fonts/font = SubResource( 6 )
+margin_top = 193.0
+margin_right = 252.0
+margin_bottom = 236.0
+focus_mode = 0
+custom_fonts/font = SubResource( 4 )
+enabled_focus_mode = 0
 text = "Help"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
-margin_top = 214.0
-margin_right = 151.0
-margin_bottom = 250.0
-custom_fonts/font = SubResource( 7 )
+margin_top = 256.0
+margin_right = 252.0
+margin_bottom = 292.0
+focus_mode = 0
+custom_fonts/font = SubResource( 5 )
+enabled_focus_mode = 0
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -205,6 +156,9 @@ __meta__ = {
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 
+[node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+
 [connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="popup_hide" from="AcceptDialog" to="." method="_on_help_hide"]
