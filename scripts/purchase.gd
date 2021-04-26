@@ -43,7 +43,6 @@ func _update_internal_state():
 		self.button_node.connect("pressed", self, "_do_purchase")
 	else:
 		self.button_node.disabled = true
-		self.button_node.disconnect("pressed", self, "_do_purchase")
 
 
 func _do_purchase():
@@ -53,5 +52,4 @@ func _do_purchase():
 		self.check_node.visible = true
 		self.price_node.visible = false
 		self.button_node.visible = false
-		self.button_node.disconnect("pressed", self, "_do_purchase")
 	global.emit_signal("purchase_made", self.purchase_type)

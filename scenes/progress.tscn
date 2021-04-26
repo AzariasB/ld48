@@ -11,12 +11,17 @@ size = 40
 font_data = ExtResource( 3 )
 
 [node name="TextureProgress2" type="TextureProgress"]
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = -288.0
-margin_right = 50.0
-margin_bottom = 288.0
-rect_min_size = Vector2( 50, 576 )
+margin_left = -51.0
+margin_top = -250.0
+margin_right = 51.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 50, 400 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme = ExtResource( 5 )
 max_value = 1000.0
 step = 0.01

@@ -1,8 +1,7 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/progress.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/th_background.png" type="Texture" id=2]
-[ext_resource path="res://assets/hand.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://resources/font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scripts/game.gd" type="Script" id=5]
 [ext_resource path="res://scenes/market.tscn" type="PackedScene" id=6]
@@ -24,13 +23,6 @@
 [sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 20
-font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 20
@@ -88,35 +80,36 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -288.0
-margin_right = 512.0
-margin_bottom = 288.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Depth" parent="HBoxContainer" instance=ExtResource( 11 )]
-max_value = 6378000000
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 510.0
+margin_bottom = 576.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_horizontal = 3
+max_value = 637800000
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 104.0
+margin_left = 514.0
 margin_right = 1024.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_right = 920.0
-margin_bottom = 57.0
+margin_right = 510.0
+margin_bottom = 77.0
 alignment = 1
 
 [node name="moneyValue" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 920.0
-margin_bottom = 57.0
+margin_top = 10.0
+margin_right = 253.0
+margin_bottom = 67.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "0 €"
@@ -125,13 +118,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="goMarket" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 257.0
+margin_right = 510.0
+margin_bottom = 77.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Market"
+icon = ExtResource( 15 )
+expand_icon = true
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 61.0
-margin_right = 920.0
-margin_bottom = 138.0
+margin_top = 81.0
+margin_right = 510.0
+margin_bottom = 158.0
 
 [node name="dig" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 920.0
+margin_right = 510.0
 margin_bottom = 77.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -142,11 +145,44 @@ text = "Dig"
 icon = ExtResource( 13 )
 expand_icon = true
 
-[node name="cooldown" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="Temp" type="VBoxContainer" parent="HBoxContainer"]
 visible = false
-margin_left = 462.0
-margin_right = 920.0
-margin_bottom = 77.0
+margin_left = 846.0
+margin_right = 1024.0
+margin_bottom = 576.0
+size_flags_vertical = 0
+
+[node name="Temperature" parent="HBoxContainer/Temp" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 150.0
+margin_bottom = 495.0
+rect_min_size = Vector2( 150, 495 )
+size_flags_horizontal = 2
+size_flags_vertical = 3
+texture_under = ExtResource( 2 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
+fill_mode = 3
+tint_under = Color( 0.666667, 0.666667, 0.666667, 1 )
+tint_over = Color( 0, 0, 0, 1 )
+
+[node name="Label" parent="HBoxContainer/Temp/Temperature" index="0"]
+margin_left = -49.3612
+margin_top = 425.187
+margin_right = 55.6388
+margin_bottom = -41.8126
+rect_rotation = 0.0
+custom_fonts/font = SubResource( 4 )
+
+[node name="cooldown" type="Button" parent="HBoxContainer/Temp"]
+margin_top = 499.0
+margin_right = 178.0
+margin_bottom = 576.0
 focus_mode = 0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
@@ -155,66 +191,13 @@ text = "Cooldown"
 icon = ExtResource( 14 )
 expand_icon = true
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 142.0
-margin_right = 920.0
-margin_bottom = 495.0
-size_flags_vertical = 3
-
-[node name="logs" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer4"]
-margin_right = 920.0
-margin_bottom = 353.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/mono_font = SubResource( 2 )
-custom_fonts/normal_font = SubResource( 3 )
-text = "
-"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 499.0
-margin_right = 920.0
-margin_bottom = 576.0
-
-[node name="goMarket" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 920.0
-margin_bottom = 77.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
-text = "Market"
-icon = ExtResource( 15 )
-expand_icon = true
-
-[node name="Temperature" parent="HBoxContainer" instance=ExtResource( 1 )]
-visible = false
-anchor_top = 0.0
-anchor_bottom = 0.0
-margin_left = 874.0
-margin_top = 0.0
-margin_right = 1024.0
-margin_bottom = 576.0
-rect_min_size = Vector2( 150, 576 )
-texture_under = ExtResource( 2 )
-texture_over = ExtResource( 9 )
-texture_progress = ExtResource( 10 )
-fill_mode = 3
-tint_under = Color( 0.666667, 0.666667, 0.666667, 1 )
-tint_over = Color( 0, 0, 0, 1 )
-
-[node name="Label" parent="HBoxContainer/Temperature" index="0"]
-margin_left = -51.4801
-margin_top = 479.22
-margin_right = 53.5199
-margin_bottom = -59.7797
-rect_rotation = 0.0
-custom_fonts/font = SubResource( 4 )
-
 [node name="Market" parent="." instance=ExtResource( 6 )]
 
 [node name="EndNode" type="Node2D" parent="."]
 
 [node name="Confeti" type="Particles2D" parent="EndNode"]
-position = Vector2( 359.204, -103.344 )
+visible = false
+position = Vector2( 361.874, -36.602 )
 emitting = false
 amount = 1
 lifetime = 3.0
@@ -306,10 +289,10 @@ volume_db = -30.0
 stream = ExtResource( 20 )
 volume_db = -15.0
 
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/goMarket" to="." method="_on_marked_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/dig" to="." method="_manual_dig"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/cooldown" to="." method="_cooldown"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer3/goMarket" to="." method="_on_marked_pressed"]
+[connection signal="pressed" from="HBoxContainer/Temp/cooldown" to="." method="_cooldown"]
 [connection signal="pressed" from="WonDialog/VBoxContainer/HBoxContainer/Button" to="." method="_menu_clicked"]
 [connection signal="pressed" from="WonDialog/VBoxContainer/HBoxContainer/Button2" to="." method="_replay_clicked"]
 
-[editable path="HBoxContainer/Temperature"]
+[editable path="HBoxContainer/Temp/Temperature"]
