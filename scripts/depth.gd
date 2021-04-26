@@ -15,7 +15,7 @@ func _display_value(value):
 		return str(value) + " mm"
 	
 	if value < 1000:
-		return str(int(value * 10) / 10.0) + " cm"
+		return str(int(value) / 10.0) + " cm"
 	
 	if value < 10_00:
 		return str(int(value / 10) / 10.0) + " dm"
